@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Link } from "wouter";
-import { X, ZoomIn } from "lucide-react";
+import { X, ZoomIn, ChevronLeft, ChevronRight } from "lucide-react";
 import { galleryItems, galleryCategories } from "@/data/gallery";
 
 export default function Gallery() {
   const [activeCategory, setActiveCategory] = useState("Все");
-  const [lightbox, setLightbox] = useState<{ img: string; title: string } | null>(null);
+  const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -24,19 +24,49 @@ export default function Gallery() {
     return () => observer.disconnect();
   }, []);
 
-  // Close lightbox on Escape
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setLightbox(null);
-    };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, []);
-
   const filtered =
     activeCategory === "Все"
       ? galleryItems
       : galleryItems.filter((item) => item.category === activeCategory);
+
+  const total = filtered.length;
+
+  const prev = useCallback(() => {
+    setLightboxIdx((i) => (i === null ? null : (i - 1 + total) % total));
+  }, [total]);
+
+  const next = useCallback(() => {
+    setLightboxIdx((i) => (i === null ? null : (i + 1) % total));
+  }, [total]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (lightboxIdx === null) return;
+      if (e.key === "Escape") setLightboxIdx(null);
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [lightboxIdx, prev, next]);
+
+  // Touch swipe
+  useEffect(() => {
+    if (lightboxIdx === null) return;
+    let startX = 0;
+    const onTouchStart = (e: TouchEvent) => { startX = e.touches[0].clientX; };
+    const onTouchEnd = (e: TouchEvent) => {
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 50) dx < 0 ? next() : prev();
+    };
+    window.addEventListener("touchstart", onTouchStart);
+    window.addEventListener("touchend", onTouchEnd);
+    return () => {
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchend", onTouchEnd);
+    };
+  }, [lightboxIdx, prev, next]);
 
   const counts = galleryCategories.reduce<Record<string, number>>((acc, cat) => {
     acc[cat] =
@@ -45,6 +75,8 @@ export default function Gallery() {
         : galleryItems.filter((i) => i.category === cat).length;
     return acc;
   }, {});
+
+  const currentItem = lightboxIdx !== null ? filtered[lightboxIdx] : null;
 
   return (
     <div className="min-h-screen bg-background">
@@ -71,7 +103,7 @@ export default function Gallery() {
           {galleryCategories.map((cat) => (
             <button
               key={cat}
-              onClick={() => setActiveCategory(cat)}
+              onClick={() => { setActiveCategory(cat); setLightboxIdx(null); }}
               className={`shrink-0 flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
                 activeCategory === cat
                   ? "bg-accent text-white shadow-md scale-105"
@@ -100,7 +132,7 @@ export default function Gallery() {
                 key={idx}
                 className="fade-in-section break-inside-avoid group cursor-pointer rounded-2xl overflow-hidden shadow-sm border border-border hover:shadow-xl transition-all duration-400 bg-white"
                 style={{ transitionDelay: `${(idx % 8) * 50}ms` }}
-                onClick={() => setLightbox({ img: item.img, title: item.title })}
+                onClick={() => setLightboxIdx(idx)}
               >
                 <div className="relative overflow-hidden">
                   <img
@@ -139,34 +171,108 @@ export default function Gallery() {
         </div>
       </section>
 
-      {/* Lightbox */}
-      {lightbox && (
+      {/* Lightbox with slider */}
+      {lightboxIdx !== null && currentItem && (
         <div
-          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 animate-scale-in"
-          onClick={() => setLightbox(null)}
+          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center animate-scale-in"
+          onClick={() => setLightboxIdx(null)}
         >
+          {/* Main image container */}
           <div
-            className="relative max-w-4xl w-full rounded-2xl overflow-hidden shadow-2xl"
+            className="relative w-full max-w-5xl mx-4 flex flex-col items-center"
             onClick={(e) => e.stopPropagation()}
           >
-            <img
-              src={lightbox.img.replace("504x376-", "1600x-").replace(".4e1.jpg", ".16c.jpg")}
-              alt={lightbox.title}
-              className="w-full h-auto max-h-[80vh] object-contain bg-black"
-              onError={(e) => {
-                (e.target as HTMLImageElement).src = lightbox.img;
-              }}
-            />
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent px-6 py-4">
-              <p className="text-white font-semibold text-lg">{lightbox.title}</p>
+            {/* Image */}
+            <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl bg-black">
+              <img
+                key={lightboxIdx}
+                src={currentItem.img}
+                alt={currentItem.title}
+                className="w-full max-h-[78vh] object-contain animate-scale-in"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = currentItem.img;
+                }}
+              />
+
+              {/* Title + counter bar */}
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent px-6 py-5">
+                <p className="text-white font-semibold text-lg leading-snug">{currentItem.title}</p>
+                <p className="text-white/60 text-sm mt-0.5">{currentItem.category}</p>
+              </div>
+
+              {/* Close */}
+              <button
+                onClick={() => setLightboxIdx(null)}
+                className="absolute top-4 right-4 w-9 h-9 glass rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
+                aria-label="Закрыть"
+              >
+                <X className="w-5 h-5 text-white" />
+              </button>
             </div>
-            <button
-              onClick={() => setLightbox(null)}
-              className="absolute top-4 right-4 glass rounded-full p-2 hover:bg-white/20 transition-colors"
-            >
-              <X className="w-5 h-5 text-white" />
-            </button>
+
+            {/* Navigation row */}
+            <div className="flex items-center justify-between w-full mt-4 px-1">
+              {/* Prev button */}
+              <button
+                onClick={prev}
+                className="flex items-center gap-2 text-white/80 hover:text-white bg-white/10 hover:bg-white/20 px-4 py-2.5 rounded-xl transition-all duration-200 text-sm font-medium"
+                aria-label="Предыдущее фото"
+              >
+                <ChevronLeft size={18} /> Предыдущее
+              </button>
+
+              {/* Counter + dots */}
+              <div className="flex flex-col items-center gap-2">
+                <span className="text-white/70 text-sm">
+                  {lightboxIdx + 1} / {total}
+                </span>
+                <div className="flex gap-1.5">
+                  {filtered.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setLightboxIdx(i)}
+                      className={`rounded-full transition-all duration-300 ${
+                        i === lightboxIdx
+                          ? "w-5 h-2 bg-accent"
+                          : "w-2 h-2 bg-white/30 hover:bg-white/60"
+                      }`}
+                      aria-label={`Фото ${i + 1}`}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Next button */}
+              <button
+                onClick={next}
+                className="flex items-center gap-2 text-white/80 hover:text-white bg-white/10 hover:bg-white/20 px-4 py-2.5 rounded-xl transition-all duration-200 text-sm font-medium"
+                aria-label="Следующее фото"
+              >
+                Следующее <ChevronRight size={18} />
+              </button>
+            </div>
+
+            {/* Hint */}
+            <p className="text-white/30 text-xs mt-3">
+              ← → для навигации · Esc для закрытия · листайте пальцем
+            </p>
           </div>
+
+          {/* Side nav arrows (click zones on sides of screen) */}
+          <button
+            onClick={(e) => { e.stopPropagation(); prev(); }}
+            className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/25 flex items-center justify-center transition-all duration-200"
+            aria-label="Предыдущее"
+          >
+            <ChevronLeft size={24} className="text-white" />
+          </button>
+          <button
+            onClick={(e) => { e.stopPropagation(); next(); }}
+            className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/25 flex items-center justify-center transition-all duration-200"
+            aria-label="Следующее"
+          >
+            <ChevronRight size={24} className="text-white" />
+          </button>
         </div>
       )}
 
