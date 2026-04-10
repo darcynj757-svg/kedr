@@ -78,7 +78,7 @@ export default function Home() {
       >
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://picsum.photos/seed/woodhouse1/1920/1080" 
+            src="/images/gallery/gallery-4.jpg" 
             alt="Деревянный дом" 
             className="w-full h-full object-cover"
           />
@@ -165,15 +165,15 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             {[
-              { slug: "kedroviy-8x10", name: "Кедровый 8x10", seed: "woodhouse2", badge: "Хит", area: "120m²", floors: "1.5 этажа", beds: "4 спальни", price: "2 450 000 руб" },
-              { slug: "tayozhny-10x12", name: "Таёжный 10x12", seed: "woodhouse3", badge: "Новинка", area: "180m²", floors: "2 этажа", beds: "5 спален", price: "3 800 000 руб" },
-              { slug: "sibirskiy-6x8", name: "Сибирский 6x8", seed: "woodhouse4", area: "90m²", floors: "1 этаж", beds: "3 спальни", price: "1 650 000 руб" },
-              { slug: "tomskiy-12x14", name: "Томский 12x14", seed: "woodhouse5", badge: "Хит", area: "280m²", floors: "2 этажа", beds: "6 спален", price: "5 200 000 руб" },
+              { slug: "kedroviy-8x10", name: "Кедровый 8x10", img: "/images/projects/d89.jpg", badge: "Хит", area: "120m²", floors: "1.5 этажа", beds: "4 спальни", price: "2 450 000 руб" },
+              { slug: "tayozhny-10x12", name: "Таёжный 10x12", img: "/images/projects/d126.jpg", badge: "Новинка", area: "180m²", floors: "2 этажа", beds: "5 спален", price: "3 800 000 руб" },
+              { slug: "sibirskiy-6x8", name: "Сибирский 6x8", img: "/images/projects/d68.jpg", area: "90m²", floors: "1 этаж", beds: "3 спальни", price: "1 650 000 руб" },
+              { slug: "tomskiy-12x14", name: "Томский 12x14", img: "/images/projects/d217.jpg", badge: "Хит", area: "280m²", floors: "2 этажа", beds: "6 спален", price: "5 200 000 руб" },
             ].map((proj, i) => (
               <div key={i} className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-border group fade-in-section">
                 <div className="relative h-64 overflow-hidden">
                   <img 
-                    src={`https://picsum.photos/seed/${proj.seed}/800/600`} 
+                    src={proj.img} 
                     alt={proj.name} 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -294,7 +294,7 @@ export default function Home() {
             </div>
             <div className="lg:w-1/2 w-full fade-in-section">
               <img 
-                src="https://picsum.photos/seed/workshop1/800/600" 
+                src="/images/production/prod-1.jpg" 
                 alt="Наше производство" 
                 className="rounded-xl shadow-2xl w-full object-cover border-4 border-white/10"
               />
@@ -310,17 +310,17 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { title: "Дома из профилированного бруса", img: "timber1", desc: "Тёплый и надёжный дом из сухого профилированного бруса собственного производства" },
-              { title: "Дома из рубленого бревна", img: "log1", desc: "Классическое ручное рубление — традиции сибирского зодчества в современном исполнении" },
-              { title: "Бани и сауны", img: "sauna1", desc: "Бани из кедра и лиственницы — настоящий русский пар для здоровья и удовольствия" },
-              { title: "Каркасные дома", img: "frame1", desc: "Быстровозводимые каркасные дома — экономия времени и бюджета без потери качества" },
-              { title: "Коттеджи и постройки", img: "cottage1", desc: "Строительство коттеджей любой этажности и сложности под ключ" },
-              { title: "Проектирование", img: "design1", desc: "Разработка индивидуальных архитектурных проектов с нуля — бесплатная консультация" },
+              { title: "Дома из профилированного бруса", img: "/images/projects/d126.jpg", desc: "Тёплый и надёжный дом из сухого профилированного бруса собственного производства" },
+              { title: "Дома из рубленого бревна", img: "/images/gallery/gallery-6.jpg", desc: "Классическое ручное рубление — традиции сибирского зодчества в современном исполнении" },
+              { title: "Бани и сауны", img: "/images/gallery/gallery-5.jpg", desc: "Бани из кедра и лиственницы — настоящий русский пар для здоровья и удовольствия" },
+              { title: "Каркасные дома", img: "/images/gallery/gallery-7.jpg", desc: "Быстровозводимые каркасные дома — экономия времени и бюджета без потери качества" },
+              { title: "Коттеджи и постройки", img: "/images/projects/d236.jpg", desc: "Строительство коттеджей любой этажности и сложности под ключ" },
+              { title: "Проектирование", img: "/images/about/about-7.jpg", desc: "Разработка индивидуальных архитектурных проектов с нуля — бесплатная консультация" },
             ].map((service, i) => (
               <Link key={i} href="/services">
                 <div className="group relative overflow-hidden rounded-xl aspect-[4/3] cursor-pointer fade-in-section">
                   <img 
-                    src={`https://picsum.photos/seed/${service.img}/800/600`} 
+                    src={service.img} 
                     alt={service.title} 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />

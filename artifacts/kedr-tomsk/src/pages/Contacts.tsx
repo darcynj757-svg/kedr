@@ -224,7 +224,7 @@ export default function Contacts() {
       {/* Map placeholder */}
       <div className="w-full h-96 bg-primary relative overflow-hidden flex items-center justify-center border-t border-border">
         {/* We use a stylized placeholder since we don't have a real map iframe */}
-        <div className="absolute inset-0 opacity-20 bg-[url('https://picsum.photos/seed/mapbg/1920/1080')] bg-cover bg-center"></div>
+        <div className="absolute inset-0 opacity-20 bg-[url('/images/gallery/gallery-4.jpg')] bg-cover bg-center"></div>
         <div className="relative z-10 bg-white p-6 rounded-xl shadow-2xl flex items-center gap-4 animate-bounce hover:animate-none cursor-pointer">
           <div className="w-12 h-12 bg-accent rounded-full text-white flex items-center justify-center shrink-0">
             <MapPin size={24} />

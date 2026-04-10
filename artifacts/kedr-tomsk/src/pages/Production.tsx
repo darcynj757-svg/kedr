@@ -12,32 +12,32 @@ export default function Production() {
     {
       title: "Приёмка древесины",
       desc: "Отбор и входной контроль сырья (кедр, сосна, лиственница). Заготавливаем только качественный зимний лес северных районов Томской области.",
-      img: "timber2"
+      img: "/images/production/prod-2.jpg"
     },
     {
       title: "Сушка в камерах",
       desc: "Сушим древесину в специальных конвективных камерах до 12-14% влажности для минимальной усадки и предотвращения трещин.",
-      img: "drying1"
+      img: "/images/production/prod-4.jpg"
     },
     {
       title: "Профилирование",
       desc: "Нарезка точного профиля шип-паз на современных строгальных ЧПУ-станках. Это обеспечивает плотное прилегание венцов и исключает продувание стен.",
-      img: "milling1"
+      img: "/images/production/prod-3.jpg"
     },
     {
       title: "Заводка чашек и пазов",
       desc: "Нарезка чашек (угловых соединений) строго по индивидуальному проекту дома. Ювелирная точность станков гарантирует идеальную сборку на участке.",
-      img: "cutting1"
+      img: "/images/production/prod-5.jpg"
     },
     {
       title: "Контроль качества",
       desc: "100% проверка каждого элемента технадзором. Отбраковка деталей со смоляными карманами, обзолом или нарушением геометрии.",
-      img: "quality1"
+      img: "/images/production/prod-1.jpg"
     },
     {
       title: "Упаковка и маркировка",
       desc: "Все детали комплекта маркируются и бережно упаковываются в транспортировочные пачки для безопасной доставки на объект.",
-      img: "packing1"
+      img: "/images/production/prod-2.jpg"
     }
   ];
 
@@ -92,7 +92,7 @@ export default function Production() {
                 <div className="w-full md:w-1/2">
                   <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-[16/10] border border-border group">
                     <img 
-                      src={`https://picsum.photos/seed/${step.img}/800/500`} 
+                      src={step.img} 
                       alt={step.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
@@ -152,10 +152,10 @@ export default function Production() {
         <div className="container mx-auto px-4 md:px-8">
           <h2 className="text-3xl font-bold text-center text-primary mb-12">Жизнь цеха</h2>
           <div className="grid grid-cols-2 gap-4">
-            <img src="https://picsum.photos/seed/factorygal1/800/600" alt="Цех 1" className="rounded-xl w-full object-cover aspect-[4/3] border border-border shadow-sm" />
-            <img src="https://picsum.photos/seed/factorygal2/800/600" alt="Цех 2" className="rounded-xl w-full object-cover aspect-[4/3] border border-border shadow-sm" />
-            <img src="https://picsum.photos/seed/factorygal3/800/600" alt="Цех 3" className="rounded-xl w-full object-cover aspect-[4/3] border border-border shadow-sm" />
-            <img src="https://picsum.photos/seed/factorygal4/800/600" alt="Цех 4" className="rounded-xl w-full object-cover aspect-[4/3] border border-border shadow-sm" />
+            <img src="/images/production/prod-1.jpg" alt="Цех 1" className="rounded-xl w-full object-cover aspect-[4/3] border border-border shadow-sm" />
+            <img src="/images/production/prod-3.jpg" alt="Цех 2" className="rounded-xl w-full object-cover aspect-[4/3] border border-border shadow-sm" />
+            <img src="/images/production/prod-4.jpg" alt="Цех 3" className="rounded-xl w-full object-cover aspect-[4/3] border border-border shadow-sm" />
+            <img src="/images/production/prod-5.jpg" alt="Цех 4" className="rounded-xl w-full object-cover aspect-[4/3] border border-border shadow-sm" />
           </div>
         </div>
       </section>

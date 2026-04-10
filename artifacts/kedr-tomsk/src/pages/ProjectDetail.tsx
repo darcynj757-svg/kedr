@@ -61,15 +61,15 @@ export default function ProjectDetail() {
           <div className="lg:col-span-2 space-y-4">
             <div className="aspect-[4/3] rounded-xl overflow-hidden shadow-sm border border-border">
               <img 
-                src={`https://picsum.photos/seed/${project.img}/1200/900`} 
+                src={project.img} 
                 alt={project.name} 
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="grid grid-cols-3 gap-4">
-              <img src={`https://picsum.photos/seed/${project.img}-2/400/300`} alt="Вид 2" className="rounded-lg object-cover aspect-[4/3] border border-border" />
-              <img src={`https://picsum.photos/seed/${project.img}-3/400/300`} alt="Вид 3" className="rounded-lg object-cover aspect-[4/3] border border-border" />
-              <img src={`https://picsum.photos/seed/${project.img}-4/400/300`} alt="Вид 4" className="rounded-lg object-cover aspect-[4/3] border border-border" />
+              <img src="/images/gallery/gallery-2.jpg" alt="Вид 2" className="rounded-lg object-cover aspect-[4/3] border border-border" />
+              <img src="/images/gallery/gallery-3.jpg" alt="Вид 3" className="rounded-lg object-cover aspect-[4/3] border border-border" />
+              <img src="/images/gallery/gallery-6.jpg" alt="Вид 4" className="rounded-lg object-cover aspect-[4/3] border border-border" />
             </div>
           </div>
 
@@ -150,7 +150,7 @@ export default function ProjectDetail() {
             {activeTab === 'plan' && (
               <div className="text-center animate-in fade-in duration-500">
                 <p className="text-lg text-muted-foreground mb-6">Грамотное распределение пространства для комфортной жизни.</p>
-                <img src={`https://picsum.photos/seed/plan-${project.slug}/800/600`} alt="Планировка" className="mx-auto rounded-lg border border-border max-w-full" />
+                <img src="/images/gallery/gallery-7.jpg" alt="Планировка" className="mx-auto rounded-lg border border-border max-w-full" />
               </div>
             )}
             {activeTab === 'kit' && (
@@ -199,7 +199,7 @@ export default function ProjectDetail() {
               <div key={proj.slug} className="bg-white rounded-xl overflow-hidden shadow-sm border border-border group hover:shadow-md transition-all">
                 <div className="relative h-48 overflow-hidden">
                   <img 
-                    src={`https://picsum.photos/seed/${proj.img}/600/400`} 
+                    src={proj.img} 
                     alt={proj.name} 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />

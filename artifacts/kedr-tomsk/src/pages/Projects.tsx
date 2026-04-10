@@ -180,7 +180,7 @@ export default function Projects() {
               <div key={proj.slug} className="bg-white rounded-xl overflow-hidden shadow-sm border border-border group hover:shadow-md transition-all">
                 <div className="relative h-60 overflow-hidden">
                   <img 
-                    src={`https://picsum.photos/seed/${proj.img}/800/600`} 
+                    src={proj.img} 
                     alt={proj.name} 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />

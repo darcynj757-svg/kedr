@@ -74,7 +74,7 @@ export default function About() {
           </div>
           <div className="lg:w-1/2 w-full">
             <img 
-              src="https://picsum.photos/seed/company1/800/600" 
+              src="/images/about/about-7.jpg" 
               alt="Кедр-Томск производство" 
               className="rounded-2xl shadow-xl w-full border border-border"
             />
@@ -122,7 +122,7 @@ export default function About() {
             {team.map((person, i) => (
               <div key={i} className="bg-white rounded-xl p-6 text-center border border-border shadow-sm hover:shadow-md transition-shadow">
                 <img 
-                  src={`https://picsum.photos/seed/person${i+1}/200/200`} 
+                  src={`/images/about/about-${(i % 6) + 1}.jpg`} 
                   alt={person.name} 
                   className="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-muted"
                 />

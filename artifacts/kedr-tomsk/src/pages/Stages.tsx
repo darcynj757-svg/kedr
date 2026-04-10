@@ -29,7 +29,7 @@ export default function Stages() {
       title: "ДОГОВОР",
       duration: "1-2 недели",
       desc: "Фиксируем все условия, стоимость и сроки в договоре. Назначаем персонального менеджера, согласуем план работ.",
-      image: "contract1",
+      image: "/images/about/about-8.jpg",
       points: [
         "Фиксация цены",
         "График платежей",
@@ -40,7 +40,7 @@ export default function Stages() {
       title: "ПРОЕКТИРОВАНИЕ",
       duration: "4-8 недель",
       desc: "Архитектор разрабатывает индивидуальный проект с учётом особенностей вашего участка. Согласуем каждую деталь.",
-      image: "architect1",
+      image: "/images/about/about-7.jpg",
       points: [
         "Эскизный проект",
         "Архитектурные решения",
@@ -51,7 +51,7 @@ export default function Stages() {
       title: "ПРОИЗВОДСТВО СРУБА",
       duration: "3-4 недели",
       desc: "Изготавливаем брус на собственном производстве в Томске. Строгий контроль качества на каждом этапе.",
-      image: "workshop2",
+      image: "/images/production/prod-1.jpg",
       points: [
         "Отбор древесины",
         "Камерная сушка",
@@ -62,7 +62,7 @@ export default function Stages() {
       title: "ФУНДАМЕНТ",
       duration: "2-4 недели",
       desc: "Заливаем фундамент по геологическим данным участка. Ленточный, плитный или свайный — под ваши условия.",
-      image: "foundation1",
+      image: "/images/stages/stages-1.jpg",
       points: [
         "Земляные работы",
         "Монтаж опалубки",
@@ -73,7 +73,7 @@ export default function Stages() {
       title: "СБОРКА СРУБА И КРОВЛЯ",
       duration: "3-6 недель",
       desc: "Собираем сруб, монтируем кровлю, устанавливаем окна и двери. Дом приобретает форму.",
-      image: "construction1",
+      image: "/images/gallery/gallery-3.jpg",
       points: [
         "Сборка стен",
         "Стропильная система",
@@ -84,7 +84,7 @@ export default function Stages() {
       title: "ОТДЕЛКА И СДАЧА",
       duration: "8-12 недель",
       desc: "Инженерные коммуникации, чистовая отделка, пусконаладка. Принимаем дом вместе с вами по чек-листу из 300 пунктов.",
-      image: "interior1",
+      image: "/images/gallery/gallery-1.jpg",
       points: [
         "Отопление и электрика",
         "Внутренняя отделка",
@@ -117,7 +117,7 @@ export default function Stages() {
                 <div className="md:w-1/2 w-full flex justify-center md:justify-end">
                   <div className={`relative w-full max-w-lg ${i % 2 !== 0 ? 'md:mr-auto md:ml-0' : 'md:ml-auto md:mr-0'}`}>
                     <img 
-                      src={`https://picsum.photos/seed/${stage.image}/800/600`} 
+                      src={stage.image} 
                       alt={stage.title} 
                       className="rounded-xl shadow-lg w-full object-cover aspect-[4/3] border border-border"
                     />
