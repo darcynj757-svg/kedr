@@ -174,7 +174,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4 animate-slide-up delay-300">
               <Button
                 size="lg"
-                className="bg-accent hover:bg-accent/90 text-white text-lg h-14 px-8 shadow-lg hover:shadow-accent/40 hover:scale-105 transition-all duration-300 shimmer"
+                className="btn-accent-gradient text-white text-lg h-14 px-8 shadow-lg hover:shadow-accent/40 hover:scale-105 transition-all duration-300 shimmer"
                 asChild
               >
                 <Link href="/projects">Посмотреть проекты</Link>
