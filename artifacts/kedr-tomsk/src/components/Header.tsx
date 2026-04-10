@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { TreePine, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Header() {
@@ -40,12 +40,12 @@ export default function Header() {
         style={isScrolled ? {} : { background: "rgba(255,255,255,0.96)" }}
       >
         <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 text-primary group">
-            <TreePine
-              size={28}
-              className="text-primary transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110"
+          <Link href="/" className="flex items-center group">
+            <img
+              src="/logo.png"
+              alt="Кедр-Томск"
+              className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             />
-            <span className="text-xl font-bold tracking-tight whitespace-nowrap">Кедр-Томск</span>
           </Link>
 
           <nav className="hidden lg:flex items-center gap-4">
@@ -87,7 +87,7 @@ export default function Header() {
             </Button>
             <Button
               size="sm"
-              className="bg-accent hover:bg-primary text-white text-xs whitespace-nowrap shimmer transition-all duration-200 hover:scale-105 hover:shadow-lg"
+              className="btn-accent-gradient text-white text-xs whitespace-nowrap shimmer transition-all duration-200 hover:scale-105 hover:shadow-lg"
               asChild
             >
               <Link href="/calculator">Рассчитать стоимость</Link>
@@ -127,7 +127,7 @@ export default function Header() {
               <Button variant="outline" className="w-full" asChild onClick={() => setIsMobileMenuOpen(false)}>
                 <Link href="/contacts">Заказать звонок</Link>
               </Button>
-              <Button className="bg-accent hover:bg-primary text-white w-full" asChild onClick={() => setIsMobileMenuOpen(false)}>
+              <Button className="btn-accent-gradient text-white w-full" asChild onClick={() => setIsMobileMenuOpen(false)}>
                 <Link href="/calculator">Рассчитать стоимость</Link>
               </Button>
             </div>
