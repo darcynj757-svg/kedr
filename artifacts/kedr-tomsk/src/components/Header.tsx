@@ -45,6 +45,7 @@ export default function Header() {
               src="/logo.png"
               alt="Кедр-Томск"
               className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              style={{ mixBlendMode: "multiply" }}
             />
           </Link>
 
