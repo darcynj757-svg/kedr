@@ -142,19 +142,19 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent"></div>
         </div>
 
-        {/* Floating solid badges — top right */}
+        {/* Floating semi-transparent badges — top right */}
         <div className="absolute top-28 right-8 z-20 hidden xl:flex flex-col gap-4">
-          <div className="bg-primary/85 backdrop-blur-md border border-white/25 rounded-2xl px-5 py-4 text-white float-slow shadow-lg">
+          <div className="bg-primary/45 backdrop-blur-sm border border-white/15 rounded-2xl px-5 py-4 text-white float-slow">
             <div className="text-2xl font-bold text-accent">25+</div>
-            <div className="text-xs text-white">лет опыта</div>
+            <div className="text-xs text-white/90">лет опыта</div>
           </div>
-          <div className="bg-primary/85 backdrop-blur-md border border-white/25 rounded-2xl px-5 py-4 text-white float-mid shadow-lg">
+          <div className="bg-primary/45 backdrop-blur-sm border border-white/15 rounded-2xl px-5 py-4 text-white float-mid">
             <div className="text-2xl font-bold text-accent">500 м³</div>
-            <div className="text-xs text-white">бруса в месяц</div>
+            <div className="text-xs text-white/90">бруса в месяц</div>
           </div>
-          <div className="bg-primary/85 backdrop-blur-md border border-white/25 rounded-2xl px-5 py-4 text-white float-fast shadow-lg">
+          <div className="bg-primary/45 backdrop-blur-sm border border-white/15 rounded-2xl px-5 py-4 text-white float-fast">
             <div className="text-2xl font-bold text-accent">вся РФ</div>
-            <div className="text-xs text-white">география</div>
+            <div className="text-xs text-white/90">география</div>
           </div>
         </div>
 

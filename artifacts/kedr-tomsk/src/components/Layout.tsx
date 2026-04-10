@@ -40,9 +40,14 @@ export default function Layout({ children }: LayoutProps) {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Написать в Max"
-          className="group flex items-center gap-0 hover:gap-3 overflow-hidden w-12 hover:w-36 h-12 bg-[#0077FF] text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 px-3"
+          className="group flex items-center gap-0 hover:gap-3 overflow-hidden w-12 hover:w-36 h-12 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 px-1.5"
+          style={{ background: "linear-gradient(135deg, #5B6CF5 0%, #7B3FE4 100%)", opacity: 0.75 }}
+          onMouseEnter={e => (e.currentTarget.style.opacity = "1")}
+          onMouseLeave={e => (e.currentTarget.style.opacity = "0.75")}
         >
-          <span className="shrink-0 font-black text-lg leading-none" style={{ fontFamily: "sans-serif" }}>M</span>
+          <span className="shrink-0 w-9 h-9 rounded-full overflow-hidden flex items-center justify-center">
+            <img src="/max-icon.png" alt="Max" className="w-9 h-9 object-cover" />
+          </span>
           <span className="text-sm font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 ml-1">
             Max
           </span>
