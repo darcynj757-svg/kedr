@@ -2,10 +2,11 @@
 import { useState, useEffect } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-import { MessageCircle, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
 
-const PHONE_WHATSAPP = "73822334439";
-const PHONE_TELEGRAM = "79528800973";
+const CONTACT_PHONE = "+79138534439";
+const WHATSAPP_PHONE = "79138534439";
+const TELEGRAM_USERNAME = "Pavelss75";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -33,12 +34,27 @@ export default function Layout({ children }: LayoutProps) {
           visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         }`}
       >
+        {/* Max messenger */}
         <a
-          href={`https://t.me/${PHONE_TELEGRAM}`}
+          href={`https://vk.me/${CONTACT_PHONE}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Написать в Max"
+          className="group flex items-center gap-0 hover:gap-3 overflow-hidden w-12 hover:w-36 h-12 bg-[#0077FF] text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 px-3"
+        >
+          <span className="shrink-0 font-black text-lg leading-none" style={{ fontFamily: "sans-serif" }}>M</span>
+          <span className="text-sm font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 ml-1">
+            Max
+          </span>
+        </a>
+
+        {/* Telegram */}
+        <a
+          href={`https://t.me/${TELEGRAM_USERNAME}`}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Написать в Telegram"
-          className="group flex items-center gap-0 hover:gap-3 overflow-hidden w-12 hover:w-44 h-12 bg-[#229ED9] text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 px-3"
+          className="group flex items-center gap-0 hover:gap-3 overflow-hidden w-12 hover:w-36 h-12 bg-[#229ED9] text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 px-3"
         >
           <span className="shrink-0">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
@@ -50,12 +66,13 @@ export default function Layout({ children }: LayoutProps) {
           </span>
         </a>
 
+        {/* WhatsApp */}
         <a
-          href={`https://wa.me/${PHONE_WHATSAPP}?text=Здравствуйте!%20Хочу%20узнать%20о%20строительстве%20дома.`}
+          href={`https://wa.me/${WHATSAPP_PHONE}?text=Здравствуйте!%20Хочу%20узнать%20о%20строительстве%20дома.`}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Написать в WhatsApp"
-          className="group flex items-center gap-0 hover:gap-3 overflow-hidden w-12 hover:w-44 h-12 bg-[#25D366] text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 px-3"
+          className="group flex items-center gap-0 hover:gap-3 overflow-hidden w-12 hover:w-36 h-12 bg-[#25D366] text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 px-3"
         >
           <span className="shrink-0">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
@@ -67,10 +84,11 @@ export default function Layout({ children }: LayoutProps) {
           </span>
         </a>
 
+        {/* Phone */}
         <a
-          href="tel:+73822334439"
+          href={`tel:${CONTACT_PHONE}`}
           aria-label="Позвонить"
-          className="group flex items-center gap-0 hover:gap-3 overflow-hidden w-12 hover:w-44 h-12 bg-primary text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 px-3"
+          className="group flex items-center gap-0 hover:gap-3 overflow-hidden w-12 hover:w-36 h-12 bg-primary text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 px-3"
         >
           <span className="shrink-0">
             <Phone size={20} />
