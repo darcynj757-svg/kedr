@@ -23,25 +23,21 @@ export default function About() {
       </section>
 
       {/* Stats */}
-      <section className="bg-accent text-white py-10 border-b-4 border-primary">
-        <div className="container mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-4xl md:text-5xl font-bold mb-2">2001</div>
-              <div className="text-white/90 text-sm md:text-base font-medium">год основания</div>
-            </div>
-            <div>
-              <div className="text-4xl md:text-5xl font-bold mb-2">25+</div>
-              <div className="text-white/90 text-sm md:text-base font-medium">лет опыта</div>
-            </div>
-            <div>
-              <div className="text-4xl md:text-5xl font-bold mb-2">500</div>
-              <div className="text-white/90 text-sm md:text-base font-medium">м³ бруса в месяц</div>
-            </div>
-            <div>
-              <div className="text-4xl md:text-5xl font-bold mb-2">100%</div>
-              <div className="text-white/90 text-sm md:text-base font-medium">собственное производство</div>
-            </div>
+      <section className="relative bg-accent text-white py-12 border-b-4 border-primary overflow-hidden">
+        <div className="absolute inset-0 opacity-10 bg-[url('/images/production/prod-1.jpg')] bg-cover bg-center"></div>
+        <div className="container mx-auto px-4 md:px-8 relative z-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            {[
+              { val: "2001", label: "год основания" },
+              { val: "25+", label: "лет опыта" },
+              { val: "500 м³", label: "бруса в месяц" },
+              { val: "100%", label: "собственное производство" },
+            ].map((s, i) => (
+              <div key={i} className="glass rounded-2xl py-5 px-4 shimmer">
+                <div className="text-3xl md:text-4xl font-bold mb-1">{s.val}</div>
+                <div className="text-white/85 text-sm font-medium">{s.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

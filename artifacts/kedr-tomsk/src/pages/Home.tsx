@@ -71,56 +71,89 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* HERO */}
-      <section 
-        id="home" 
-        className="relative min-h-[90vh] flex items-center"
+      <section
+        id="home"
+        className="relative min-h-[94vh] flex items-center overflow-hidden"
         data-testid="hero-section"
       >
+        {/* Background with parallax-feel */}
         <div className="absolute inset-0 z-0">
-          <img 
-            src="/images/gallery/gallery-4.jpg" 
-            alt="Деревянный дом" 
-            className="w-full h-full object-cover"
+          <img
+            src="/images/gallery/gallery-4.jpg"
+            alt="Деревянный дом"
+            className="w-full h-full object-cover scale-105"
+            style={{ transformOrigin: "center center" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/30"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/92 via-primary/60 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent"></div>
         </div>
-        
-        <div className="container mx-auto px-4 md:px-8 relative z-10 py-20 fade-in-section visible">
+
+        {/* Floating glass badges — top right */}
+        <div className="absolute top-28 right-8 z-20 hidden xl:flex flex-col gap-4">
+          <div className="glass rounded-2xl px-5 py-4 text-white float-slow">
+            <div className="text-2xl font-bold text-accent">25+</div>
+            <div className="text-xs text-white/80">лет опыта</div>
+          </div>
+          <div className="glass rounded-2xl px-5 py-4 text-white float-mid">
+            <div className="text-2xl font-bold text-accent">500 м³</div>
+            <div className="text-xs text-white/80">бруса в месяц</div>
+          </div>
+          <div className="glass rounded-2xl px-5 py-4 text-white float-fast">
+            <div className="text-2xl font-bold text-accent">вся РФ</div>
+            <div className="text-xs text-white/80">география</div>
+          </div>
+        </div>
+
+        {/* Main content */}
+        <div className="container mx-auto px-4 md:px-8 relative z-10 py-28">
           <div className="max-w-2xl text-white">
-            <div className="inline-block px-4 py-1.5 border border-accent rounded-full text-sm font-medium mb-6">
+            <div className="inline-flex items-center gap-2 glass px-4 py-2 rounded-full text-sm font-medium mb-8 animate-slide-up">
+              <span className="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
               Томск • С 2001 года
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              Строим деревянные дома под ключ в Томске и Томской области
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-slide-up delay-100">
+              Строим деревянные<br className="hidden md:block" /> дома под ключ
             </h1>
-            <p className="text-lg md:text-xl text-white/70 mb-10 leading-relaxed">
+            <p className="text-lg md:text-xl text-white/75 mb-10 leading-relaxed animate-slide-up delay-200 max-w-lg">
               Собственное производство профилированного бруса. Полный цикл от проекта до отделки. Более 25 лет опыта.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-accent hover:bg-primary text-white text-lg h-14 px-8" asChild>
+            <div className="flex flex-col sm:flex-row gap-4 animate-slide-up delay-300">
+              <Button
+                size="lg"
+                className="bg-accent hover:bg-accent/90 text-white text-lg h-14 px-8 shadow-lg hover:shadow-accent/40 hover:scale-105 transition-all duration-300 shimmer"
+                asChild
+              >
                 <Link href="/projects">Посмотреть проекты</Link>
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary text-lg h-14 px-8 bg-transparent" asChild>
+              <Button
+                size="lg"
+                variant="outline"
+                className="glass border-white/30 text-white hover:bg-white/20 text-lg h-14 px-8 transition-all duration-300 hover:scale-105"
+                asChild
+              >
                 <Link href="/contacts">Рассчитать стоимость</Link>
               </Button>
             </div>
           </div>
         </div>
-        
-        <div className="absolute bottom-0 left-0 w-full bg-primary/80 backdrop-blur-md border-t border-white/10 z-10 hidden md:block">
+
+        {/* Bottom glass bar */}
+        <div className="absolute bottom-0 left-0 w-full glass-dark border-t border-white/10 z-10 hidden md:block">
           <div className="container mx-auto px-4 md:px-8">
             <div className="flex justify-between items-center py-4 text-white/90 font-medium text-sm lg:text-base">
               <div className="flex items-center gap-2">
                 <CheckCircle size={18} className="text-accent" />
                 <span>Собственное производство в Томске</span>
               </div>
+              <div className="w-px h-5 bg-white/20"></div>
               <div className="flex items-center gap-2">
                 <CheckCircle size={18} className="text-accent" />
                 <span>Работаем с 2001 года</span>
               </div>
+              <div className="w-px h-5 bg-white/20"></div>
               <div className="flex items-center gap-2">
                 <CheckCircle size={18} className="text-accent" />
-                <span>Гарантия 100%</span>
+                <span>Профилированный брус 200×300 мм</span>
               </div>
             </div>
           </div>
@@ -131,25 +164,30 @@ export default function Home() {
       <section id="advantages" className="py-24 bg-background" data-testid="advantages-section">
         <div className="container mx-auto px-4 md:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-primary fade-in-section">Почему выбирают Кедр-Томск</h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               { icon: Shield, title: "Более 25 лет на рынке", desc: "Строим качественные дома с 2001 года. Сотни довольных клиентов по всей России" },
-              { icon: Factory, title: "Собственное производство", desc: "Собственная площадка в промзоне Томска. Профилированный брус изготавливается у нас" },
+              { icon: Factory, title: "Собственное производство", desc: "Собственная площадка в промзоне Томска. До 500 м³ профилированного бруса в месяц" },
               { icon: Wrench, title: "Полный цикл под ключ", desc: "От проекта до ключей в руках: один подрядчик, ноль субподрядчиков" },
               { icon: Clock, title: "Строгие сроки, фиксированная цена", desc: "Фиксируем сроки и стоимость в договоре. Штраф за каждый день просрочки" },
               { icon: CheckCircle, title: "Гарантия на все работы", desc: "Гарантия 5 лет на конструктив и 2 года на отделочные работы" },
               { icon: Leaf, title: "Экологичные материалы", desc: "Строим из кедра, сосны и лиственницы — натуральное дерево без синтетики" },
             ].map((adv, i) => (
-              <Card key={i} className="border-border hover:-translate-y-2 transition-transform duration-300 shadow-md hover:shadow-xl fade-in-section">
-                <CardContent className="p-8 flex flex-col items-center text-center">
-                  <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mb-6 text-accent">
-                    <adv.icon size={32} />
+              <div
+                key={i}
+                className="group relative bg-white rounded-2xl p-8 border border-border shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-400 overflow-hidden fade-in-section cursor-default"
+              >
+                {/* Glass shimmer overlay on hover */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-gradient-to-br from-accent/5 to-transparent rounded-2xl"></div>
+                <div className="relative z-10 flex flex-col items-center text-center">
+                  <div className="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center mb-6 text-accent group-hover:bg-accent group-hover:text-white transition-all duration-300 group-hover:scale-110">
+                    <adv.icon size={28} />
                   </div>
-                  <h3 className="text-xl font-semibold mb-3 text-primary">{adv.title}</h3>
-                  <p className="text-muted-foreground">{adv.desc}</p>
-                </CardContent>
-              </Card>
+                  <h3 className="text-xl font-semibold mb-3 text-primary group-hover:text-accent transition-colors duration-300">{adv.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{adv.desc}</p>
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -165,44 +203,58 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             {[
-              { slug: "d89", name: "Проект Д89", img: "/images/projects/d89.jpg", badge: "Популярный", area: "89 м²", floors: "1 этаж", beds: "3 комнаты", price: "от 979 000 руб." },
-              { slug: "d126", name: "Проект Д126", img: "/images/projects/d126.jpg", badge: "Хит", area: "126 м²", floors: "2 этажа", beds: "4 комнаты", price: "от 1 386 000 руб." },
-              { slug: "d68", name: "Проект Д68", img: "/images/projects/d68.jpg", area: "68 м²", floors: "1 этаж", beds: "2 комнаты", price: "от 748 000 руб." },
-              { slug: "d217", name: "Проект Д217", img: "/images/projects/d217.jpg", badge: "Хит", area: "217 м²", floors: "2 этажа", beds: "5 комнат", price: "от 2 387 000 руб." },
+              { slug: "d89", name: "Проект Д89", img: "/images/projects/d89.jpg", badge: "Популярный", area: "89 м²", floors: "1 этаж", beds: "3 комнаты", price: "979 000 руб." },
+              { slug: "d126", name: "Проект Д126", img: "/images/projects/d126.jpg", badge: "Хит", area: "126 м²", floors: "2 этажа", beds: "4 комнаты", price: "1 386 000 руб." },
+              { slug: "d68", name: "Проект Д68", img: "/images/projects/d68.jpg", area: "68 м²", floors: "1 этаж", beds: "2 комнаты", price: "748 000 руб." },
+              { slug: "d217", name: "Проект Д217", img: "/images/projects/d217.jpg", badge: "Хит", area: "217 м²", floors: "2 этажа", beds: "5 комнат", price: "2 387 000 руб." },
             ].map((proj, i) => (
-              <div key={i} className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-border group fade-in-section">
-                <div className="relative h-64 overflow-hidden">
-                  <img 
-                    src={proj.img} 
-                    alt={proj.name} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              <div key={i} className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 border border-border hover:-translate-y-1 fade-in-section">
+                <div className="relative h-72 overflow-hidden">
+                  <img
+                    src={proj.img}
+                    alt={proj.name}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
+                  {/* Glass overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
                   {proj.badge && (
-                    <Badge className="absolute top-4 left-4 bg-accent text-white px-3 py-1 text-sm">{proj.badge}</Badge>
+                    <Badge className="absolute top-4 left-4 glass text-white border-white/30 px-3 py-1 text-sm font-semibold">
+                      {proj.badge}
+                    </Badge>
                   )}
-                </div>
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-primary mb-4">{proj.name}</h3>
-                  <div className="grid grid-cols-3 gap-2 mb-6">
-                    <div className="text-center p-2 bg-muted rounded-lg">
-                      <span className="block text-xs text-muted-foreground mb-1">Площадь</span>
-                      <span className="font-semibold text-foreground">{proj.area}</span>
-                    </div>
-                    <div className="text-center p-2 bg-muted rounded-lg">
-                      <span className="block text-xs text-muted-foreground mb-1">Этажность</span>
-                      <span className="font-semibold text-foreground">{proj.floors}</span>
-                    </div>
-                    <div className="text-center p-2 bg-muted rounded-lg">
-                      <span className="block text-xs text-muted-foreground mb-1">Комнаты</span>
-                      <span className="font-semibold text-foreground">{proj.beds}</span>
+                  {/* Price badge on hover */}
+                  <div className="absolute bottom-4 left-4 right-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-400">
+                    <div className="glass rounded-xl px-4 py-2 flex items-center justify-between">
+                      <span className="text-white/80 text-sm">от</span>
+                      <span className="text-white font-bold text-lg">{proj.price}</span>
+                      <Link href={`/projects/${proj.slug}`} className="text-accent font-semibold text-sm hover:text-white transition-colors">
+                        Подробнее →
+                      </Link>
                     </div>
                   </div>
-                  <div className="flex items-center justify-between mt-6 pt-6 border-t border-border">
-                    <div>
-                      <span className="text-sm text-muted-foreground block">Стоимость:</span>
-                      <span className="text-xl font-bold text-primary">от {proj.price}</span>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-primary mb-4 group-hover:text-accent transition-colors duration-300">{proj.name}</h3>
+                  <div className="grid grid-cols-3 gap-2 mb-5">
+                    <div className="text-center p-2 bg-muted rounded-xl">
+                      <span className="block text-xs text-muted-foreground mb-1">Площадь</span>
+                      <span className="font-semibold text-foreground text-sm">{proj.area}</span>
                     </div>
-                    <Button className="bg-accent hover:bg-primary text-white" asChild>
+                    <div className="text-center p-2 bg-muted rounded-xl">
+                      <span className="block text-xs text-muted-foreground mb-1">Этажность</span>
+                      <span className="font-semibold text-foreground text-sm">{proj.floors}</span>
+                    </div>
+                    <div className="text-center p-2 bg-muted rounded-xl">
+                      <span className="block text-xs text-muted-foreground mb-1">Комнаты</span>
+                      <span className="font-semibold text-foreground text-sm">{proj.beds}</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between pt-4 border-t border-border">
+                    <div>
+                      <span className="text-xs text-muted-foreground block">от</span>
+                      <span className="text-lg font-bold text-primary">{proj.price}</span>
+                    </div>
+                    <Button className="bg-accent hover:bg-primary text-white hover:scale-105 transition-all duration-200" asChild>
                       <Link href={`/projects/${proj.slug}`}>Подробнее</Link>
                     </Button>
                   </div>
