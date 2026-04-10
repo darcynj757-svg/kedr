@@ -72,10 +72,8 @@ export default function Articles() {
           {/* Featured article */}
           {activeTag === "Все" && (
             <div className="fade-in-section mb-10">
-              <a
-                href={filtered[0].sourceUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href={`/articles/${filtered[0].slug}`}
                 className="group block rounded-3xl overflow-hidden shadow-lg border border-border hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 bg-white md:flex"
               >
                 <div className="relative md:w-1/2 h-64 md:h-auto overflow-hidden">
@@ -111,18 +109,16 @@ export default function Articles() {
                     </span>
                   </div>
                 </div>
-              </a>
+              </Link>
             </div>
           )}
 
           {/* Rest of articles */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {(activeTag === "Все" ? filtered.slice(1) : filtered).map((article, idx) => (
-              <a
+              <Link
                 key={article.slug}
-                href={article.sourceUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={`/articles/${article.slug}`}
                 className="fade-in-section group block bg-white rounded-2xl overflow-hidden border border-border shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-400"
                 style={{ transitionDelay: `${idx * 60}ms` }}
               >
@@ -163,7 +159,7 @@ export default function Articles() {
                     </span>
                   </div>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
 
