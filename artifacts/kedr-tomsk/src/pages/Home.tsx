@@ -88,13 +88,13 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-8 relative z-10 py-20 fade-in-section visible">
           <div className="max-w-2xl text-white">
             <div className="inline-block px-4 py-1.5 border border-accent rounded-full text-sm font-medium mb-6">
-              Томск • С 2014 года
+              Томск • С 2001 года
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
               Строим деревянные дома под ключ в Томске и Томской области
             </h1>
             <p className="text-lg md:text-xl text-white/70 mb-10 leading-relaxed">
-              Собственное производство профилированного бруса. Полный цикл от проекта до отделки. Более 10 лет опыта.
+              Собственное производство профилированного бруса. Полный цикл от проекта до отделки. Более 25 лет опыта.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button size="lg" className="bg-accent hover:bg-primary text-white text-lg h-14 px-8" asChild>
@@ -116,7 +116,7 @@ export default function Home() {
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle size={18} className="text-accent" />
-                <span>Более 10 лет опыта</span>
+                <span>Работаем с 2001 года</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle size={18} className="text-accent" />
@@ -134,7 +134,7 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { icon: Shield, title: "Более 10 лет на рынке", desc: "Строим качественные дома с 2014 года. Сотни довольных клиентов по всей Сибири" },
+              { icon: Shield, title: "Более 25 лет на рынке", desc: "Строим качественные дома с 2001 года. Сотни довольных клиентов по всей России" },
               { icon: Factory, title: "Собственное производство", desc: "Собственная площадка в промзоне Томска. Профилированный брус изготавливается у нас" },
               { icon: Wrench, title: "Полный цикл под ключ", desc: "От проекта до ключей в руках: один подрядчик, ноль субподрядчиков" },
               { icon: Clock, title: "Строгие сроки, фиксированная цена", desc: "Фиксируем сроки и стоимость в договоре. Штраф за каждый день просрочки" },
@@ -165,10 +165,10 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             {[
-              { slug: "kedroviy-8x10", name: "Кедровый 8x10", img: "/images/projects/d89.jpg", badge: "Хит", area: "120m²", floors: "1.5 этажа", beds: "4 спальни", price: "2 450 000 руб" },
-              { slug: "tayozhny-10x12", name: "Таёжный 10x12", img: "/images/projects/d126.jpg", badge: "Новинка", area: "180m²", floors: "2 этажа", beds: "5 спален", price: "3 800 000 руб" },
-              { slug: "sibirskiy-6x8", name: "Сибирский 6x8", img: "/images/projects/d68.jpg", area: "90m²", floors: "1 этаж", beds: "3 спальни", price: "1 650 000 руб" },
-              { slug: "tomskiy-12x14", name: "Томский 12x14", img: "/images/projects/d217.jpg", badge: "Хит", area: "280m²", floors: "2 этажа", beds: "6 спален", price: "5 200 000 руб" },
+              { slug: "d89", name: "Проект Д89", img: "/images/projects/d89.jpg", badge: "Популярный", area: "89 м²", floors: "1 этаж", beds: "3 комнаты", price: "от 979 000 руб." },
+              { slug: "d126", name: "Проект Д126", img: "/images/projects/d126.jpg", badge: "Хит", area: "126 м²", floors: "2 этажа", beds: "4 комнаты", price: "от 1 386 000 руб." },
+              { slug: "d68", name: "Проект Д68", img: "/images/projects/d68.jpg", area: "68 м²", floors: "1 этаж", beds: "2 комнаты", price: "от 748 000 руб." },
+              { slug: "d217", name: "Проект Д217", img: "/images/projects/d217.jpg", badge: "Хит", area: "217 м²", floors: "2 этажа", beds: "5 комнат", price: "от 2 387 000 руб." },
             ].map((proj, i) => (
               <div key={i} className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-border group fade-in-section">
                 <div className="relative h-64 overflow-hidden">
@@ -268,11 +268,11 @@ export default function Home() {
             <div className="lg:w-1/2 fade-in-section">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">О компании Кедр-Томск</h2>
               <p className="text-lg text-white/80 mb-10 leading-relaxed">
-                Направленность нашей компании – строительство малоэтажных домов из натурального дерева. Наша собственная производственная площадка расположена в промзоне г. Томска, где мы изготавливаем профилированный и оцилиндрованный брус. Работаем по всей России с 2014 года.
+                Направленность нашей компании — строительство деревянных домов, коттеджей и бань под ключ из профилированного бруса и рубленого бревна. Собственная производственная площадка в г. Томске — изготавливаем до 500 м³ профилированного бруса в месяц. Работаем с 2001 года.
               </p>
               <div className="grid grid-cols-2 gap-6 mb-8">
                 <div className="border-l-4 border-accent pl-4">
-                  <div className="text-4xl font-bold text-accent mb-1">10+</div>
+                  <div className="text-4xl font-bold text-accent mb-1">25+</div>
                   <div className="text-sm text-white/70">лет опыта</div>
                 </div>
                 <div className="border-l-4 border-accent pl-4">
@@ -341,20 +341,20 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center fade-in-section">
             <div>
-              <div className="text-5xl md:text-6xl font-bold text-accent mb-2">10+</div>
+              <div className="text-5xl md:text-6xl font-bold text-accent mb-2">25+</div>
               <div className="text-white font-medium">Лет на рынке</div>
             </div>
             <div>
-              <div className="text-5xl md:text-6xl font-bold text-accent mb-2">150</div>
-              <div className="text-white font-medium">Построенных домов</div>
+              <div className="text-5xl md:text-6xl font-bold text-accent mb-2">500</div>
+              <div className="text-white font-medium">М³ бруса в месяц</div>
             </div>
             <div>
-              <div className="text-5xl md:text-6xl font-bold text-accent mb-2">20+</div>
-              <div className="text-white font-medium">Станков ЧПУ</div>
+              <div className="text-5xl md:text-6xl font-bold text-accent mb-2">2</div>
+              <div className="text-white font-medium">Башенных крана</div>
             </div>
             <div>
-              <div className="text-5xl md:text-6xl font-bold text-accent mb-2">5 лет</div>
-              <div className="text-white font-medium">Гарантия по договору</div>
+              <div className="text-5xl md:text-6xl font-bold text-accent mb-2">вся РФ</div>
+              <div className="text-white font-medium">География работ</div>
             </div>
           </div>
         </div>

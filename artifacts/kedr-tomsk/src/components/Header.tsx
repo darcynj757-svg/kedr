@@ -56,7 +56,7 @@ export default function Header() {
           </nav>
           
           <div className="hidden lg:flex items-center gap-3">
-            <a href="tel:+73822000000" className="text-xs font-bold text-foreground hover:text-accent whitespace-nowrap">+7 (3822) 000-000</a>
+            <a href="tel:+73822334439" className="text-xs font-bold text-foreground hover:text-accent whitespace-nowrap">+7 (3822) 33-44-39</a>
             <Button size="sm" variant="outline" className="border-border hover:bg-muted text-xs whitespace-nowrap" asChild>
               <Link href="/contacts">Заказать звонок</Link>
             </Button>
@@ -90,7 +90,7 @@ export default function Header() {
               );
             })}
             <div className="flex flex-col gap-3 mt-2">
-              <a href="tel:+73822000000" className="text-lg font-bold text-center py-2">+7 (3822) 000-000</a>
+              <a href="tel:+73822334439" className="text-lg font-bold text-center py-2">+7 (3822) 33-44-39</a>
               <Button variant="outline" className="w-full" asChild onClick={() => setIsMobileMenuOpen(false)}>
                 <Link href="/contacts">Заказать звонок</Link>
               </Button>

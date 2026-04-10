@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "wouter";
-import { Shield, Home, Key, HardHat, FileText, CheckCircle, Search } from "lucide-react";
+import { Shield, Home, Key, HardHat, FileText, CheckCircle, TreePine, Package } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,84 +10,79 @@ export default function Services() {
     window.scrollTo(0, 0);
   }, []);
 
-  const stages = [
+  const mainServices = [
     {
       num: "01",
-      title: "УЧАСТОК — Выбор и оформление участка",
+      title: "Дома из профилированного бруса",
       items: [
-        "Подбор земельного участка",
-        "Юридическое сопровождение сделки",
-        "Проверка документов",
-        "Технический анализ участка",
-        "Ландшафтное планирование"
-      ],
-      icon: Search
-    },
-    {
-      num: "02",
-      title: "ПРОЕКТ — Проектирование",
-      items: [
-        "Консультация с архитектором",
-        "Анализ планировки",
-        "Индивидуальное проектирование",
-        "Помощь с выбором технологии"
-      ],
-      icon: FileText
-    },
-    {
-      num: "03",
-      title: "ПОДГОТОВКА — Подготовка к строительству",
-      items: [
-        "Подготовка участка",
-        "Получение разрешительной документации",
-        "Решение административных вопросов"
-      ],
-      icon: HardHat
-    },
-    {
-      num: "04",
-      title: "СТРОИТЕЛЬСТВО — Строительство домов",
-      items: [
-        "Дома из профилированного бруса",
-        "Дома из рубленого бревна",
-        "Каркасные дома",
-        "Бани и сауны",
-        "Инженерные коммуникации и отделка",
-        "Покраска и отделка фасадов"
+        "Профилированный брус собственного производства",
+        "Максимальное сечение стены 300 мм",
+        "Мощность — до 500 м³ в месяц",
+        "Строительство в Томске и по всей России",
+        "Стоимость от 11 000 до 16 000 руб./м² (без фундамента и кровельного материала)",
       ],
       icon: Home
     },
     {
-      num: "05",
-      title: "КОНТРОЛЬ — Сопровождение при строительстве",
+      num: "02",
+      title: "Рубленые дома из бревна",
       items: [
-        "Независимый технадзор",
-        "Фотофиксация этапов",
-        "Личный кабинет (онлайн-мониторинг)",
-        "Решение споров с соседями и администрацией"
+        "Дома из рубленого бревна ручной рубки",
+        "Сибирский кедр, сосна, лиственница",
+        "Индивидуальное проектирование",
+        "Рубка в чашу и в лапу",
+        "Строительство в Томске, области и по всей России",
       ],
-      icon: Shield
+      icon: TreePine
+    },
+    {
+      num: "03",
+      title: "Проектирование",
+      items: [
+        "Разработка индивидуального проекта",
+        "Консультация с инженером",
+        "Архитектурные и конструктивные решения",
+        "Подбор проекта из каталога",
+        "Адаптация проекта под ваш участок",
+      ],
+      icon: FileText
+    },
+    {
+      num: "04",
+      title: "Строительство бань и беседок",
+      items: [
+        "Бани из профилированного бруса",
+        "Бани из рубленого бревна",
+        "Беседки и террасы",
+        "Хозяйственные постройки",
+        "Отделка и коммуникации под ключ",
+      ],
+      icon: HardHat
+    },
+    {
+      num: "05",
+      title: "Столярные изделия",
+      items: [
+        "Деревянные окна",
+        "Деревянные двери",
+        "Лестницы из массива",
+        "Деревянные полы",
+        "Мебель на заказ",
+      ],
+      icon: Package
     },
     {
       num: "06",
-      title: "СДАЧА — Завершение строительства",
+      title: "Пиломатериалы и брус оптом",
       items: [
-        "Сдача в эксплуатацию",
-        "Регистрация дома",
-        "Пусконаладочные работы"
+        "Профилированный брус в розницу и оптом",
+        "Обрезной и необрезной пиломатериал",
+        "Отгрузка в железнодорожные вагоны",
+        "Доставка по Томску и Томской области",
+        "Доставка в любой регион России",
       ],
-      icon: Key
+      icon: Package
     },
-    {
-      num: "07",
-      title: "СЕРВИС — Пожизненный сервис",
-      items: [
-        "Техническое обслуживание",
-        "Гарантия 5 лет",
-        "Поддержка 24/7"
-      ],
-      icon: CheckCircle
-    }
   ];
 
   return (
@@ -99,24 +94,33 @@ export default function Services() {
             <Link href="/" className="hover:text-accent transition-colors">Главная</Link> / Услуги
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Наши услуги</h1>
-          <p className="text-xl text-white/80 max-w-3xl">Весь цикл работ — от участка до полной эксплуатации дома. Мы берем на себя все заботы, чтобы вы могли просто наслаждаться результатом.</p>
+          <p className="text-xl text-white/80 max-w-3xl">Строительство деревянных домов под ключ в Томске, Томской области и по всей России. Собственное производство профилированного бруса с 2001 года.</p>
+        </div>
+      </section>
+
+      {/* Pricing banner */}
+      <section className="bg-accent/10 border-b border-accent/20 py-6">
+        <div className="container mx-auto px-4 md:px-8 text-center">
+          <p className="text-lg font-semibold text-primary">
+            Строительство деревянного дома под ключ: <span className="text-accent">от 11 000 до 16 000 руб./м²</span> <span className="text-muted-foreground font-normal text-base">(без стоимости фундамента и кровельного материала)</span>
+          </p>
         </div>
       </section>
 
       <div className="container mx-auto px-4 md:px-8 py-16">
         <div className="max-w-4xl mx-auto space-y-12">
-          {stages.map((stage, i) => (
+          {mainServices.map((service, i) => (
             <div key={i} className="flex gap-6 md:gap-8 flex-col md:flex-row bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-border hover:shadow-md transition-shadow">
               <div className="md:w-1/4 shrink-0 flex flex-row md:flex-col items-center md:items-start gap-4">
-                <div className="text-4xl md:text-5xl font-bold text-accent">{stage.num}</div>
+                <div className="text-4xl md:text-5xl font-bold text-accent">{service.num}</div>
                 <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center text-primary">
-                  <stage.icon size={24} />
+                  <service.icon size={24} />
                 </div>
               </div>
               <div className="md:w-3/4">
-                <h2 className="text-2xl font-bold text-primary mb-6">{stage.title}</h2>
+                <h2 className="text-2xl font-bold text-primary mb-6">{service.title}</h2>
                 <ul className="space-y-3">
-                  {stage.items.map((item, j) => (
+                  {service.items.map((item, j) => (
                     <li key={j} className="flex items-start gap-3">
                       <CheckCircle size={20} className="text-accent shrink-0 mt-0.5" />
                       <span className="text-foreground/80">{item}</span>
@@ -136,22 +140,22 @@ export default function Services() {
             <Card className="bg-primary text-white border-none shadow-lg hover:-translate-y-1 transition-transform">
               <CardContent className="p-8 text-center flex flex-col items-center">
                 <Shield size={48} className="text-accent mb-6" />
-                <h3 className="text-xl font-bold mb-3">Гарантия 5 лет</h3>
-                <p className="text-white/80">На все строительные и монтажные работы, закреплено в договоре.</p>
+                <h3 className="text-xl font-bold mb-3">Собственное производство</h3>
+                <p className="text-white/80">Производим брус сами — контролируем качество на каждом этапе от сырья до готового сруба.</p>
               </CardContent>
             </Card>
             <Card className="bg-primary text-white border-none shadow-lg hover:-translate-y-1 transition-transform">
               <CardContent className="p-8 text-center flex flex-col items-center">
                 <HardHat size={48} className="text-accent mb-6" />
-                <h3 className="text-xl font-bold mb-3">Технадзор на всех этапах</h3>
-                <p className="text-white/80">Многоуровневый контроль качества каждого узла и соединения.</p>
+                <h3 className="text-xl font-bold mb-3">Строим с 2001 года</h3>
+                <p className="text-white/80">Более 25 лет опыта в деревянном строительстве в условиях сибирского климата.</p>
               </CardContent>
             </Card>
             <Card className="bg-primary text-white border-none shadow-lg hover:-translate-y-1 transition-transform">
               <CardContent className="p-8 text-center flex flex-col items-center">
-                <Search size={48} className="text-accent mb-6" />
-                <h3 className="text-xl font-bold mb-3">Личный кабинет онлайн</h3>
-                <p className="text-white/80">Фото и видео отчеты со стройплощадки в режиме реального времени.</p>
+                <Key size={48} className="text-accent mb-6" />
+                <h3 className="text-xl font-bold mb-3">Строительство под ключ</h3>
+                <p className="text-white/80">От проекта до передачи ключей. Работаем в Томске, области и любом регионе России.</p>
               </CardContent>
             </Card>
           </div>

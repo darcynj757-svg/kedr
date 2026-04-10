@@ -68,11 +68,11 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex flex-col">
                 <span className="text-white/50 text-xs mb-1">Телефон:</span>
-                <a href="tel:+73822000000" className="text-lg font-bold hover:text-accent transition-colors">+7 (3822) 000-000</a>
+                <a href="tel:+73822334439" className="text-lg font-bold hover:text-accent transition-colors">+7 (3822) 33-44-39</a>
               </li>
               <li className="flex flex-col">
                 <span className="text-white/50 text-xs mb-1">Email:</span>
-                <a href="mailto:info@kedr-tomsk.ru" className="hover:text-accent transition-colors">info@kedr-tomsk.ru</a>
+                <a href="mailto:mail@kedr-tomsk.ru" className="hover:text-accent transition-colors">mail@kedr-tomsk.ru</a>
               </li>
               <li className="flex flex-col">
                 <span className="text-white/50 text-xs mb-1">Офис:</span>

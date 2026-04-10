@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "wouter";
-import { MapPin, Factory, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, User } from "lucide-react";
 import { FaVk, FaTelegram, FaYoutube } from "react-icons/fa";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -80,17 +80,8 @@ export default function Contacts() {
                   <MapPin className="text-primary" />
                 </div>
                 <div>
-                  <div className="font-bold text-primary mb-1">Офис продаж</div>
-                  <div className="text-muted-foreground">г. Томск, ул. Профсоюзная, 2/67 стр.3</div>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-primary/5 rounded-full flex items-center justify-center shrink-0">
-                  <Factory className="text-primary" />
-                </div>
-                <div>
-                  <div className="font-bold text-primary mb-1">Производство</div>
-                  <div className="text-muted-foreground">промзона Томска, ул. Нахимова, 12</div>
+                  <div className="font-bold text-primary mb-1">Адрес</div>
+                  <div className="text-muted-foreground">634024, г. Томск, ул. Профсоюзная, 2/67 стр. 3</div>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -98,8 +89,18 @@ export default function Contacts() {
                   <Phone className="text-primary" />
                 </div>
                 <div>
-                  <div className="font-bold text-primary mb-1">Телефон</div>
-                  <a href="tel:+73822000000" className="text-lg font-bold hover:text-accent transition-colors">+7 (3822) 000-000</a>
+                  <div className="font-bold text-primary mb-1">Офис</div>
+                  <a href="tel:+73822334439" className="text-lg font-bold hover:text-accent transition-colors">+7 (3822) 33-44-39</a>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-primary/5 rounded-full flex items-center justify-center shrink-0">
+                  <User className="text-primary" />
+                </div>
+                <div>
+                  <div className="font-bold text-primary mb-1">Директор</div>
+                  <div className="text-muted-foreground mb-1">Серебряков Павел Михайлович</div>
+                  <a href="tel:+79528800973" className="font-semibold hover:text-accent transition-colors">+7 (952) 88-00-973</a>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -108,7 +109,7 @@ export default function Contacts() {
                 </div>
                 <div>
                   <div className="font-bold text-primary mb-1">Email</div>
-                  <a href="mailto:info@kedr-tomsk.ru" className="text-muted-foreground hover:text-accent transition-colors">info@kedr-tomsk.ru</a>
+                  <a href="mailto:mail@kedr-tomsk.ru" className="text-muted-foreground hover:text-accent transition-colors">mail@kedr-tomsk.ru</a>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -117,7 +118,7 @@ export default function Contacts() {
                 </div>
                 <div>
                   <div className="font-bold text-primary mb-1">Режим работы</div>
-                  <div className="text-muted-foreground">Пн-Пт: 9:00–19:00<br/>Сб: 10:00–17:00<br/>Вс: выходной</div>
+                  <div className="text-muted-foreground">Пн–Пт: 9:00–18:00<br/>Сб–Вс: по предварительной договорённости</div>
                 </div>
               </div>
             </div>
@@ -186,6 +187,7 @@ export default function Contacts() {
                             <SelectItem value="consultation">Консультация по проекту</SelectItem>
                             <SelectItem value="calculation">Расчёт стоимости</SelectItem>
                             <SelectItem value="excursion">Экскурсия на производство</SelectItem>
+                            <SelectItem value="timber">Покупка профилированного бруса</SelectItem>
                             <SelectItem value="other">Другое</SelectItem>
                           </SelectContent>
                         </Select>
@@ -223,15 +225,14 @@ export default function Contacts() {
 
       {/* Map placeholder */}
       <div className="w-full h-96 bg-primary relative overflow-hidden flex items-center justify-center border-t border-border">
-        {/* We use a stylized placeholder since we don't have a real map iframe */}
         <div className="absolute inset-0 opacity-20 bg-[url('/images/gallery/gallery-4.jpg')] bg-cover bg-center"></div>
-        <div className="relative z-10 bg-white p-6 rounded-xl shadow-2xl flex items-center gap-4 animate-bounce hover:animate-none cursor-pointer">
+        <div className="relative z-10 bg-white p-6 rounded-xl shadow-2xl flex items-center gap-4 hover:shadow-3xl cursor-pointer">
           <div className="w-12 h-12 bg-accent rounded-full text-white flex items-center justify-center shrink-0">
             <MapPin size={24} />
           </div>
           <div>
-            <div className="font-bold text-primary">Кедр-Томск</div>
-            <div className="text-sm text-muted-foreground">г. Томск, ул. Профсоюзная, 2/67 стр.3</div>
+            <div className="font-bold text-primary">ООО «Кедр-Томск»</div>
+            <div className="text-sm text-muted-foreground">634024, г. Томск, ул. Профсоюзная, 2/67 стр. 3</div>
           </div>
         </div>
       </div>
