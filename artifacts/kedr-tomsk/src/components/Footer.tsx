@@ -7,10 +7,12 @@ export default function Footer() {
   const navLinks = [
     { label: "Главная", to: "/" },
     { label: "Проекты", to: "/projects" },
+    { label: "Фотогалерея", to: "/gallery" },
     { label: "Услуги", to: "/services" },
     { label: "Этапы строительства", to: "/stages" },
     { label: "О компании", to: "/about" },
     { label: "Производство", to: "/production" },
+    { label: "Статьи", to: "/articles" },
     { label: "Контакты", to: "/contacts" },
   ];
 

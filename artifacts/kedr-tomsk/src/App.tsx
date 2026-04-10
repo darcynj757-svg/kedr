@@ -12,6 +12,8 @@ import Stages from "@/pages/Stages";
 import About from "@/pages/About";
 import Production from "@/pages/Production";
 import Contacts from "@/pages/Contacts";
+import Articles from "@/pages/Articles";
+import Gallery from "@/pages/Gallery";
 import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient();
@@ -28,6 +30,8 @@ function Router() {
         <Route path="/about" component={About} />
         <Route path="/production" component={Production} />
         <Route path="/contacts" component={Contacts} />
+        <Route path="/articles" component={Articles} />
+        <Route path="/gallery" component={Gallery} />
         <Route component={NotFound} />
       </Switch>
     </Layout>
