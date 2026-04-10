@@ -16,6 +16,13 @@ export default function Footer() {
     { label: "Контакты", to: "/contacts" },
   ];
 
+  const usefulLinks = [
+    { label: "Калькулятор стоимости", to: "/calculator" },
+    { label: "Сравнение материалов", to: "/comparison" },
+    { label: "Вопросы и ответы", to: "/faq" },
+    { label: "География работ", to: "/geography" },
+  ];
+
   return (
     <footer className="bg-primary text-white py-16" data-testid="footer">
       <div className="container mx-auto px-4 md:px-8">
@@ -56,12 +63,22 @@ export default function Footer() {
           
           <div>
             <h4 className="text-lg font-bold mb-6">Услуги</h4>
-            <ul className="space-y-3">
+            <ul className="space-y-3 mb-8">
               <li><Link href="/services" className="text-white/70 hover:text-accent transition-colors text-sm">Дома из профилированного бруса</Link></li>
               <li><Link href="/services" className="text-white/70 hover:text-accent transition-colors text-sm">Дома из рубленого бревна</Link></li>
               <li><Link href="/services" className="text-white/70 hover:text-accent transition-colors text-sm">Каркасные дома</Link></li>
               <li><Link href="/services" className="text-white/70 hover:text-accent transition-colors text-sm">Бани и сауны</Link></li>
               <li><Link href="/services" className="text-white/70 hover:text-accent transition-colors text-sm">Проектирование</Link></li>
+            </ul>
+            <h4 className="text-lg font-bold mb-4">Полезное</h4>
+            <ul className="space-y-3">
+              {usefulLinks.map((link) => (
+                <li key={link.to}>
+                  <Link href={link.to} className="text-white/70 hover:text-accent transition-colors text-sm">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
           

@@ -33,6 +33,6 @@ See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and pa
 - **Purpose**: Premium landing page for "Кедр-Томск", a wooden house construction company in Tomsk, Russia
 - **Brand colors**: Navy #0A2540 (primary), Orange #FF6B00 (accent)
 - **Pages**: Home (hero, advantages, projects, stages, about, services, stats with CountUp, testimonials carousel, callback, FAQ), Projects, Services, Stages, About, Production, Contacts, Gallery, Articles, ArticleDetail, Calculator, Comparison, NotFound
-- **New features**: Calculator (`/calculator`) — 5-step interactive cost estimator; Comparison (`/comparison`) — material comparison table (9 criteria, expandable rows, highlight mode); Testimonials carousel on Home; Animated CountUp numbers in stats section; Floating WhatsApp/Telegram/Phone buttons (Layout.tsx)
+- **New features**: Calculator (`/calculator`) — 5-step interactive cost estimator; Comparison (`/comparison`) — material comparison table (9 criteria, expandable rows, highlight mode); Testimonials carousel on Home; Animated CountUp numbers in stats section; Floating WhatsApp/Telegram/Phone buttons (Layout.tsx); FAQ (`/faq`) — 18 questions in 5 categories with search + accordion; Geography (`/geography`) — interactive SVG Russia map with 15 city markers and side detail panel
 - **Tech**: React + Vite, Tailwind CSS, shadcn/ui, react-hook-form + zod, lucide-react, react-icons
 - **No backend needed** — fully static frontend
