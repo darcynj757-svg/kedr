@@ -79,7 +79,7 @@ export default function Home() {
         {/* Background with parallax-feel */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/images/gallery/gallery-4.jpg"
+            src="/images/hero/hero-main.jpg"
             alt="Деревянный дом"
             className="w-full h-full object-cover scale-105"
             style={{ transformOrigin: "center center" }}
