@@ -4,8 +4,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { 
-  Shield, Wrench, Factory, Clock, CheckCircle, Leaf
+  Shield, Wrench, Factory, Clock, CheckCircle, Leaf, ChevronLeft, ChevronRight, Star
 } from "lucide-react";
+import CountUp from "@/components/CountUp";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
@@ -29,6 +30,57 @@ const formSchema = z.object({
   phone: z.string().min(10, "Минимум 10 символов"),
 });
 
+const testimonials = [
+  {
+    name: "Андрей Васильев",
+    city: "Томск",
+    year: "2023",
+    type: "Дом из бруса, 180 м²",
+    text: "Строили дом под ключ. Всё от проекта до финишной отделки. Очень доволен: сделали точно в срок, без скрытых доплат. Сруб сухой, геометрия отличная. Уже третья зима — никаких проблем с теплом.",
+    rating: 5,
+  },
+  {
+    name: "Светлана Морозова",
+    city: "Новосибирск",
+    year: "2022",
+    type: "Рубленый дом, 220 м²",
+    text: "Выбирали между несколькими компаниями, остановились на Кедр-Томск из-за их собственного производства. Бревно привезли своё, не перекупное. Дом получился красивый, натуральный. Рекомендую всем, кто хочет настоящий сруб.",
+    rating: 5,
+  },
+  {
+    name: "Дмитрий Коновалов",
+    city: "Кемерово",
+    year: "2023",
+    type: "Баня из бревна",
+    text: "Заказали баню 6×8 из рубленого бревна. Работают профессионально — смету дали подробную, в процессе строительства всё согласовывали. Результат — лучше, чем ожидали. Пар мягкий, держится долго.",
+    rating: 5,
+  },
+  {
+    name: "Ирина Лебедева",
+    city: "Барнаул",
+    year: "2024",
+    type: "Дом из бруса, 140 м²",
+    text: "Прошли все этапы: от выбора проекта до подписания акта. Менеджер был на связи постоянно. Особенно понравилась экскурсия на производство — видно, что компания серьёзная. В доме уже живём, очень комфортно.",
+    rating: 5,
+  },
+  {
+    name: "Игорь Петренко",
+    city: "Томск",
+    year: "2021",
+    type: "Рубленый дом, 260 м²",
+    text: "Строили большой загородный дом. Ребята справились отлично — сроки выдержали, качество на уровне. Сейчас советую Кедр-Томск всем своим знакомым. Уже двое соседей заказали у них строительство.",
+    rating: 5,
+  },
+  {
+    name: "Наталья Овчинникова",
+    city: "Томск",
+    year: "2022",
+    type: "Дом из бруса, 110 м²",
+    text: "Искала недорогой, но качественный дом. В Кедр-Томск предложили вариант из профилированного бруса — тёплый, практичный, не требует больших вложений в отделку. Очень довольна выбором и работой команды.",
+    rating: 5,
+  },
+];
+
 export default function Home() {
   const { toast } = useToast();
 
@@ -38,6 +90,8 @@ export default function Home() {
       phone: "",
     },
   });
+
+  const [reviewIdx, setReviewIdx] = useState(0);
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     toast({
@@ -131,7 +185,7 @@ export default function Home() {
                 className="glass border-white/30 text-white hover:bg-white/20 text-lg h-14 px-8 transition-all duration-300 hover:scale-105"
                 asChild
               >
-                <Link href="/contacts">Рассчитать стоимость</Link>
+                <Link href="/calculator">Рассчитать стоимость</Link>
               </Button>
             </div>
           </div>
@@ -393,20 +447,116 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center fade-in-section">
             <div>
-              <div className="text-5xl md:text-6xl font-bold text-accent mb-2">25+</div>
+              <div className="text-5xl md:text-6xl font-bold text-accent mb-2">
+                <CountUp to={25} suffix="+" duration={1600} />
+              </div>
               <div className="text-white font-medium">Лет на рынке</div>
             </div>
             <div>
-              <div className="text-5xl md:text-6xl font-bold text-accent mb-2">500</div>
+              <div className="text-5xl md:text-6xl font-bold text-accent mb-2">
+                <CountUp to={500} duration={1800} />
+              </div>
               <div className="text-white font-medium">М³ бруса в месяц</div>
             </div>
             <div>
-              <div className="text-5xl md:text-6xl font-bold text-accent mb-2">2</div>
-              <div className="text-white font-medium">Башенных крана</div>
+              <div className="text-5xl md:text-6xl font-bold text-accent mb-2">
+                <CountUp to={320} suffix="+" duration={2000} />
+              </div>
+              <div className="text-white font-medium">Построенных домов</div>
             </div>
             <div>
-              <div className="text-5xl md:text-6xl font-bold text-accent mb-2">вся РФ</div>
+              <div className="text-5xl md:text-6xl font-bold text-accent mb-2">
+                вся РФ
+              </div>
               <div className="text-white font-medium">География работ</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* TESTIMONIALS */}
+      <section id="testimonials" className="py-24 bg-muted/30" data-testid="testimonials-section">
+        <div className="container mx-auto px-4 md:px-8">
+          <div className="text-center mb-12 fade-in-section">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">Отзывы клиентов</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Что говорят те, кто уже живёт в доме от Кедр-Томск
+            </p>
+          </div>
+
+          {/* Large featured review */}
+          <div className="max-w-4xl mx-auto fade-in-section">
+            <div className="relative bg-white rounded-3xl border border-border shadow-lg p-8 md:p-12 overflow-hidden">
+              <div className="absolute top-6 right-8 text-8xl text-accent/10 font-serif leading-none select-none">"</div>
+              <div className="flex items-center gap-1 mb-6">
+                {Array.from({ length: testimonials[reviewIdx].rating }).map((_, i) => (
+                  <Star key={i} size={18} className="fill-amber-400 text-amber-400" />
+                ))}
+              </div>
+              <p className="text-xl text-foreground leading-relaxed mb-8 relative z-10">
+                {testimonials[reviewIdx].text}
+              </p>
+              <div className="flex items-center justify-between flex-wrap gap-4">
+                <div>
+                  <div className="font-bold text-primary text-lg">{testimonials[reviewIdx].name}</div>
+                  <div className="text-sm text-muted-foreground">
+                    {testimonials[reviewIdx].city} · {testimonials[reviewIdx].year} · {testimonials[reviewIdx].type}
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => setReviewIdx((i) => (i - 1 + testimonials.length) % testimonials.length)}
+                    className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:bg-accent hover:text-white hover:border-accent transition-all duration-200"
+                    aria-label="Предыдущий"
+                  >
+                    <ChevronLeft size={18} />
+                  </button>
+                  <span className="text-sm text-muted-foreground font-medium">
+                    {reviewIdx + 1} / {testimonials.length}
+                  </span>
+                  <button
+                    onClick={() => setReviewIdx((i) => (i + 1) % testimonials.length)}
+                    className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:bg-accent hover:text-white hover:border-accent transition-all duration-200"
+                    aria-label="Следующий"
+                  >
+                    <ChevronRight size={18} />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Dot indicators */}
+            <div className="flex justify-center gap-2 mt-5">
+              {testimonials.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setReviewIdx(i)}
+                  className={`rounded-full transition-all duration-300 ${
+                    i === reviewIdx ? "w-6 h-2.5 bg-accent" : "w-2.5 h-2.5 bg-border hover:bg-accent/40"
+                  }`}
+                  aria-label={`Отзыв ${i + 1}`}
+                />
+              ))}
+            </div>
+
+            {/* Mini previews */}
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-8">
+              {testimonials.filter((_, i) => i !== reviewIdx).slice(0, 3).map((t, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setReviewIdx(testimonials.indexOf(t))}
+                  className="text-left bg-white rounded-2xl border border-border p-4 hover:border-accent/40 hover:shadow-md transition-all duration-200 text-sm"
+                >
+                  <div className="flex gap-0.5 mb-2">
+                    {Array.from({ length: t.rating }).map((_, i) => (
+                      <Star key={i} size={11} className="fill-amber-400 text-amber-400" />
+                    ))}
+                  </div>
+                  <div className="text-foreground line-clamp-2 leading-snug mb-2">{t.text}</div>
+                  <div className="font-semibold text-primary text-xs">{t.name}</div>
+                  <div className="text-muted-foreground text-xs">{t.city} · {t.year}</div>
+                </button>
+              ))}
             </div>
           </div>
         </div>

@@ -90,7 +90,7 @@ export default function Header() {
               className="bg-accent hover:bg-primary text-white text-xs whitespace-nowrap shimmer transition-all duration-200 hover:scale-105 hover:shadow-lg"
               asChild
             >
-              <Link href="/contacts">Рассчитать стоимость</Link>
+              <Link href="/calculator">Рассчитать стоимость</Link>
             </Button>
           </div>
 
@@ -128,7 +128,7 @@ export default function Header() {
                 <Link href="/contacts">Заказать звонок</Link>
               </Button>
               <Button className="bg-accent hover:bg-primary text-white w-full" asChild onClick={() => setIsMobileMenuOpen(false)}>
-                <Link href="/contacts">Рассчитать стоимость</Link>
+                <Link href="/calculator">Рассчитать стоимость</Link>
               </Button>
             </div>
           </div>

@@ -32,6 +32,7 @@ See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and pa
 - **Type**: react-vite (frontend only, no backend)
 - **Purpose**: Premium landing page for "Кедр-Томск", a wooden house construction company in Tomsk, Russia
 - **Brand colors**: Navy #0A2540 (primary), Orange #FF6B00 (accent)
-- **Sections**: Header, Hero, Advantages (6 cards), Popular Projects (4 cards), Construction Stages (7 steps), About Company, Services (4 cards), Stats Bar, Callback Form, FAQ Accordion, Footer
+- **Pages**: Home (hero, advantages, projects, stages, about, services, stats with CountUp, testimonials carousel, callback, FAQ), Projects, Services, Stages, About, Production, Contacts, Gallery, Articles, ArticleDetail, Calculator, Comparison, NotFound
+- **New features**: Calculator (`/calculator`) — 5-step interactive cost estimator; Comparison (`/comparison`) — material comparison table (9 criteria, expandable rows, highlight mode); Testimonials carousel on Home; Animated CountUp numbers in stats section; Floating WhatsApp/Telegram/Phone buttons (Layout.tsx)
 - **Tech**: React + Vite, Tailwind CSS, shadcn/ui, react-hook-form + zod, lucide-react, react-icons
 - **No backend needed** — fully static frontend

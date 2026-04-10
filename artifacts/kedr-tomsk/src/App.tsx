@@ -12,6 +12,8 @@ import Stages from "@/pages/Stages";
 import About from "@/pages/About";
 import Production from "@/pages/Production";
 import Contacts from "@/pages/Contacts";
+import Calculator from "@/pages/Calculator";
+import Comparison from "@/pages/Comparison";
 import Articles from "@/pages/Articles";
 import ArticleDetail from "@/pages/ArticleDetail";
 import Gallery from "@/pages/Gallery";
@@ -31,6 +33,8 @@ function Router() {
         <Route path="/about" component={About} />
         <Route path="/production" component={Production} />
         <Route path="/contacts" component={Contacts} />
+        <Route path="/calculator" component={Calculator} />
+        <Route path="/comparison" component={Comparison} />
         <Route path="/articles" component={Articles} />
         <Route path="/articles/:slug" component={ArticleDetail} />
         <Route path="/gallery" component={Gallery} />
