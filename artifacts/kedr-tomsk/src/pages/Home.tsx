@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { 
   TreePine, Menu, X, Phone, Shield, Wrench, Factory, 
-  Clock, TrendingDown, CheckCircle 
+  Clock, TrendingDown, CheckCircle, Leaf
 } from "lucide-react";
 import { FaVk, FaTelegram, FaYoutube } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
@@ -77,8 +77,9 @@ export default function Home() {
     { label: "Главная", href: "#home" },
     { label: "Проекты", href: "#projects" },
     { label: "Услуги", href: "#services" },
-    { label: "О компании", href: "#about" },
     { label: "Этапы", href: "#stages" },
+    { label: "О компании", href: "#about" },
+    { label: "Производство", href: "#about" },
     { label: "Контакты", href: "#footer" },
   ];
 
@@ -103,28 +104,28 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
           <a href="#home" onClick={(e) => scrollTo(e, "#home")} className="flex items-center gap-2 text-primary">
             <TreePine size={28} className="text-primary" />
-            <span className="text-xl font-bold tracking-tight">Кедр-Томск</span>
+            <span className="text-xl font-bold tracking-tight whitespace-nowrap">Кедр-Томск</span>
           </a>
           
-          <nav className="hidden lg:flex items-center gap-6">
+          <nav className="hidden lg:flex items-center gap-4">
             {navLinks.map((link) => (
               <a 
                 key={link.label} 
                 href={link.href} 
                 onClick={(e) => scrollTo(e, link.href)}
-                className="text-sm font-medium text-foreground hover:text-accent transition-colors"
+                className="text-xs font-medium text-foreground hover:text-accent transition-colors whitespace-nowrap"
               >
                 {link.label}
               </a>
             ))}
           </nav>
           
-          <div className="hidden lg:flex items-center gap-4">
-            <a href="tel:+73822000000" className="text-sm font-bold text-foreground hover:text-accent">+7 (3822) 000-000</a>
-            <Button variant="outline" className="border-border hover:bg-muted" asChild>
+          <div className="hidden lg:flex items-center gap-3">
+            <a href="tel:+73822000000" className="text-xs font-bold text-foreground hover:text-accent whitespace-nowrap">+7 (3822) 000-000</a>
+            <Button size="sm" variant="outline" className="border-border hover:bg-muted text-xs whitespace-nowrap" asChild>
               <a href="#callback" onClick={(e) => scrollTo(e, "#callback")}>Заказать звонок</a>
             </Button>
-            <Button className="bg-accent hover:bg-primary text-white" asChild>
+            <Button size="sm" className="bg-accent hover:bg-primary text-white text-xs whitespace-nowrap" asChild>
               <a href="#projects" onClick={(e) => scrollTo(e, "#projects")}>Рассчитать стоимость</a>
             </Button>
           </div>
@@ -184,11 +185,11 @@ export default function Home() {
               <div className="inline-block px-4 py-1.5 border border-accent rounded-full text-sm font-medium mb-6">
                 Томск • С 2014 года
               </div>
-              <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
-                Строительство деревянных домов
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                Строим деревянные дома под ключ в Томске и Томской области
               </h1>
               <p className="text-lg md:text-xl text-white/70 mb-10 leading-relaxed">
-                Мы предлагаем решения от профессионалов в постройке деревянных домов под ключ по конкурентным ценам.
+                Собственное производство профилированного бруса. Полный цикл от проекта до отделки. Более 10 лет опыта.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" className="bg-accent hover:bg-primary text-white text-lg h-14 px-8" asChild>
@@ -228,12 +229,12 @@ export default function Home() {
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
-                { icon: Shield, title: "Более 10 лет опыта", desc: "Строим качественные дома с 2014 года. Сотни довольных клиентов по всей Сибири" },
-                { icon: Wrench, title: "Полный цикл под ключ", desc: "От проекта до ключей в руках: один подрядчик, ноль субподрядчиков" },
+                { icon: Shield, title: "Более 10 лет на рынке", desc: "Строим качественные дома с 2014 года. Сотни довольных клиентов по всей Сибири" },
                 { icon: Factory, title: "Собственное производство", desc: "Собственная площадка в промзоне Томска. Профилированный брус изготавливается у нас" },
-                { icon: Clock, title: "Строгое соблюдение сроков", desc: "Фиксируем сроки в договоре. Штраф за каждый день просрочки" },
-                { icon: TrendingDown, title: "Цены ниже рыночных", desc: "Прямое производство исключает наценку посредников. Экономия 15–20%" },
-                { icon: CheckCircle, title: "100% гарантия на работы", desc: "Гарантия 5 лет на конструктив и 2 года на отделочные работы" },
+                { icon: Wrench, title: "Полный цикл под ключ", desc: "От проекта до ключей в руках: один подрядчик, ноль субподрядчиков" },
+                { icon: Clock, title: "Строгие сроки, фиксированная цена", desc: "Фиксируем сроки и стоимость в договоре. Штраф за каждый день просрочки" },
+                { icon: CheckCircle, title: "Гарантия на все работы", desc: "Гарантия 5 лет на конструктив и 2 года на отделочные работы" },
+                { icon: Leaf, title: "Экологичные материалы", desc: "Строим из кедра, сосны и лиственницы — натуральное дерево без синтетики" },
               ].map((adv, i) => (
                 <Card key={i} className="border-border hover:-translate-y-2 transition-transform duration-300 shadow-md hover:shadow-xl fade-in-section">
                   <CardContent className="p-8 flex flex-col items-center text-center">
@@ -392,12 +393,14 @@ export default function Home() {
           <div className="container mx-auto px-4 md:px-8">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-primary fade-in-section">Наши услуги</h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
-                { title: "Дома из профилированного бруса", img: "timber1" },
-                { title: "Дома из рубленного бревна", img: "log1" },
-                { title: "Бани и беседки", img: "sauna1" },
-                { title: "Коттеджи и постройки", img: "cottage1" },
+                { title: "Дома из профилированного бруса", img: "timber1", desc: "Тёплый и надёжный дом из сухого профилированного бруса собственного производства" },
+                { title: "Дома из рубленого бревна", img: "log1", desc: "Классическое ручное рубление — традиции сибирского зодчества в современном исполнении" },
+                { title: "Бани и сауны", img: "sauna1", desc: "Бани из кедра и лиственницы — настоящий русский пар для здоровья и удовольствия" },
+                { title: "Каркасные дома", img: "frame1", desc: "Быстровозводимые каркасные дома — экономия времени и бюджета без потери качества" },
+                { title: "Коттеджи и постройки", img: "cottage1", desc: "Строительство коттеджей любой этажности и сложности под ключ" },
+                { title: "Проектирование", img: "design1", desc: "Разработка индивидуальных архитектурных проектов с нуля — бесплатная консультация" },
               ].map((service, i) => (
                 <div key={i} className="group relative overflow-hidden rounded-xl aspect-[4/3] cursor-pointer fade-in-section">
                   <img 
@@ -405,9 +408,10 @@ export default function Home() {
                     alt={service.title} 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent flex flex-col justify-end p-8">
-                    <h3 className="text-2xl font-bold text-white mb-2 transform group-hover:-translate-y-2 transition-transform duration-300">{service.title}</h3>
-                    <div className="w-12 h-1 bg-accent mb-4 transform group-hover:-translate-y-2 transition-transform duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/50 to-transparent flex flex-col justify-end p-6">
+                    <h3 className="text-xl font-bold text-white mb-2 transform group-hover:-translate-y-1 transition-transform duration-300">{service.title}</h3>
+                    <div className="w-10 h-0.5 bg-accent mb-3"></div>
+                    <p className="text-sm text-white/80 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300">{service.desc}</p>
                   </div>
                 </div>
               ))}
