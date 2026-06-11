@@ -280,12 +280,21 @@ export default function Home() {
               </FadeUp>
             </div>
             <FadeRight>
-              <Button variant="outline" className="border-border text-foreground/60 hover:border-foreground/40 hover:text-foreground rounded-none px-8 tracking-wide text-xs uppercase transition-all group" asChild>
-                <Link href="/projects">
-                  Все проекты
-                  <ArrowRight size={13} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                </Link>
-              </Button>
+              <Link href="/projects">
+                <motion.div
+                  className="relative overflow-hidden h-11 px-8 flex items-center gap-2 cursor-pointer group border border-border text-foreground/60 hover:border-foreground/40 hover:text-foreground text-xs uppercase tracking-wide transition-colors duration-200"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="absolute inset-0 pointer-events-none">
+                    <div className="absolute top-0 left-0 right-0 h-[45%] bg-gradient-to-b from-white/25 to-transparent" />
+                    <div className="absolute top-[8%] left-[10%] w-[25%] h-[20%] bg-white/15 blur-sm rounded-full" />
+                  </div>
+                  <span className="relative z-10">Все проекты</span>
+                  <ArrowRight size={13} className="relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
+                </motion.div>
+              </Link>
             </FadeRight>
           </div>
 
@@ -399,12 +408,21 @@ export default function Home() {
                   <h3 className="text-2xl font-bold text-white leading-snug mb-4">Разработаем<br />индивидуальный<br />проект</h3>
                   <p className="text-white/40 text-sm font-light leading-relaxed">Архитекторы создадут дом по вашим размерам и пожеланиям</p>
                 </div>
-                <Button className="btn-accent-gradient text-black rounded-none w-fit px-8 tracking-wide text-xs uppercase font-semibold group" asChild>
-                  <Link href="/calculator">
-                    Рассчитать стоимость
-                    <ArrowRight size={13} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                  </Link>
-                </Button>
+                <Link href="/calculator">
+                  <motion.div
+                    className="relative overflow-hidden h-11 px-8 flex items-center gap-2 cursor-pointer group btn-accent-gradient text-black text-xs uppercase tracking-wide font-semibold w-fit"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <div className="absolute inset-0 pointer-events-none">
+                      <div className="absolute top-0 left-0 right-0 h-[45%] bg-gradient-to-b from-white/30 to-transparent" />
+                      <div className="absolute top-[10%] left-[15%] w-[30%] h-[25%] bg-white/20 blur-sm rounded-full" />
+                    </div>
+                    <span className="relative z-10">Рассчитать стоимость</span>
+                    <ArrowRight size={13} className="relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
+                  </motion.div>
+                </Link>
               </div>
             </FadeUp>
           </div>
@@ -497,12 +515,21 @@ export default function Home() {
                 ))}
               </StaggerChildren>
 
-              <Button variant="outline" className="border-border text-foreground/60 hover:border-foreground/40 hover:text-foreground rounded-none px-8 tracking-wide text-xs uppercase transition-all group" asChild>
-                <Link href="/about">
-                  Подробнее о компании
-                  <ArrowRight size={13} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                </Link>
-              </Button>
+              <Link href="/about">
+                <motion.div
+                  className="relative overflow-hidden h-11 px-8 flex items-center gap-2 cursor-pointer group border border-border text-foreground/60 hover:border-foreground/40 hover:text-foreground text-xs uppercase tracking-wide transition-colors duration-200"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="absolute inset-0 pointer-events-none">
+                    <div className="absolute top-0 left-0 right-0 h-[45%] bg-gradient-to-b from-white/25 to-transparent" />
+                    <div className="absolute top-[8%] left-[10%] w-[25%] h-[20%] bg-white/15 blur-sm rounded-full" />
+                  </div>
+                  <span className="relative z-10">Подробнее о компании</span>
+                  <ArrowRight size={13} className="relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
+                </motion.div>
+              </Link>
             </FadeLeft>
 
             <FadeRight>
@@ -720,9 +747,13 @@ export default function Home() {
                     </FormItem>
                   )}
                 />
-                <Button type="submit" size="lg" className="h-14 px-10 text-sm btn-accent-gradient text-black rounded-none tracking-wide font-semibold uppercase">
-                  Жду звонка
-                </Button>
+                <button type="submit" className="relative overflow-hidden h-14 px-10 text-sm btn-accent-gradient text-black rounded-none tracking-wide font-semibold uppercase shrink-0">
+                  <div className="absolute inset-0 pointer-events-none">
+                    <div className="absolute top-0 left-0 right-0 h-[45%] bg-gradient-to-b from-white/30 to-transparent" />
+                    <div className="absolute top-[10%] left-[15%] w-[30%] h-[25%] bg-white/20 blur-sm rounded-full" />
+                  </div>
+                  <span className="relative z-10">Жду звонка</span>
+                </button>
               </form>
             </Form>
             <p className="text-[10px] text-white/20 mt-4 uppercase tracking-widest">
