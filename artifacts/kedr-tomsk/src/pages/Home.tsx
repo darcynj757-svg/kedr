@@ -252,7 +252,7 @@ export default function Home() {
 
                   {/* Label */}
                   <h3 className="text-white text-sm font-bold uppercase tracking-widest mb-1">{adv.label}</h3>
-                  <p className="text-white/50 text-xs leading-relaxed font-light opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-400">{adv.desc}</p>
+                  <p className="text-white/50 text-xs leading-relaxed font-light">{adv.desc}</p>
                 </div>
               </motion.div>
             ))}
