@@ -77,8 +77,7 @@ export default function Header() {
             </a>
             <Button
               size="sm"
-              variant="outline"
-              className="border-border hover:bg-muted text-xs whitespace-nowrap transition-all duration-200 hover:scale-105"
+              className="bg-white/20 border border-white/50 text-white hover:bg-white/30 text-xs whitespace-nowrap transition-all duration-200 hover:scale-105 backdrop-blur-sm"
               asChild
             >
               <Link href="/contacts">Заказать звонок</Link>
