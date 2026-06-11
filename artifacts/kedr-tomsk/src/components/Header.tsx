@@ -43,8 +43,8 @@ export default function Header() {
             <img
               src="/logo.png"
               alt="Кедр-Томск"
-              className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-              style={{ filter: "drop-shadow(0 1px 4px rgba(0,0,0,0.4))" }}
+              className="h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              style={{ filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.5))" }}
             />
           </Link>
 
