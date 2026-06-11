@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
-import { CheckCircle, ChevronRight, ChevronLeft, RotateCcw } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { CheckCircle, CaretRight, CaretLeft, ArrowCounterClockwise } from "@phosphor-icons/react";
 import { useToast } from "@/hooks/use-toast";
+import PageHero from "@/components/PageHero";
 
 const houseTypes = [
   {
@@ -66,9 +65,7 @@ export default function Calculator() {
   const [name, setName] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  useEffect(() => { window.scrollTo(0, 0); }, []);
 
   const selectedType = houseTypes.find((t) => t.id === houseType);
   const selectedFloor = floorOptions.find((f) => f.id === floors)!;
@@ -76,14 +73,10 @@ export default function Calculator() {
   const calcPrice = () => {
     if (!selectedType) return { min: 0, max: 0 };
     const base = area * selectedFloor.mult;
-    let addMin = 0;
-    let addMax = 0;
+    let addMin = 0, addMax = 0;
     selectedExtras.forEach((id) => {
       const ex = extras.find((e) => e.id === id);
-      if (ex) {
-        addMin += ex.addMin;
-        addMax += ex.addMax;
-      }
+      if (ex) { addMin += ex.addMin; addMax += ex.addMax; }
     });
     return {
       min: Math.round(((selectedType.priceMin * base + addMin * base) / 100000)) * 100000,
@@ -105,106 +98,76 @@ export default function Calculator() {
   };
 
   const reset = () => {
-    setStep(0);
-    setHouseType(null);
-    setArea(120);
-    setFloors("1");
-    setSelectedExtras([]);
-    setPhone("");
-    setName("");
-    setSubmitted(false);
+    setStep(0); setHouseType(null); setArea(120); setFloors("1");
+    setSelectedExtras([]); setPhone(""); setName(""); setSubmitted(false);
   };
 
   const handleSubmit = () => {
     if (!phone) return;
-    toast({
-      title: "Заявка принята!",
-      description: "Перезвоним в течение 15 минут с точным расчётом",
-    });
+    toast({ title: "Заявка принята!", description: "Перезвоним в течение 15 минут с точным расчётом" });
     setSubmitted(true);
   };
 
   const toggleExtra = (id: string) => {
-    setSelectedExtras((prev) =>
-      prev.includes(id) ? prev.filter((e) => e !== id) : [...prev, id]
-    );
+    setSelectedExtras(prev => prev.includes(id) ? prev.filter(e => e !== id) : [...prev, id]);
   };
 
   return (
     <div className="min-h-screen bg-background pt-20">
-      {/* Hero */}
-      <section className="bg-primary text-white py-14">
-        <div className="container mx-auto px-4 md:px-8">
-          <div className="text-sm mb-4 text-white/70">
-            <Link href="/" className="hover:text-accent transition-colors">Главная</Link> / Калькулятор
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-3">Рассчитать стоимость</h1>
-          <p className="text-xl text-white/80 max-w-2xl">
-            Получите ориентировочную стоимость вашего дома за 1 минуту. Точный расчёт — бесплатно после звонка специалиста.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        title="Рассчитать стоимость"
+        subtitle="Получите ориентировочную стоимость вашего дома за 1 минуту. Точный расчёт — бесплатно после звонка специалиста."
+        breadcrumb="Калькулятор"
+        tag="Калькулятор"
+        image="/images/projects/d159.jpg"
+      />
 
-      <div className="container mx-auto px-4 md:px-8 py-10 max-w-3xl">
-        {/* Progress bar */}
-        <div className="mb-10">
-          <div className="flex items-center justify-between mb-3">
+      <div className="container mx-auto px-6 md:px-12 py-14 max-w-3xl">
+        {/* Progress */}
+        <div className="mb-12">
+          <div className="flex items-center justify-between mb-4">
             {STEPS.map((label, idx) => (
               <div key={idx} className="flex flex-col items-center flex-1">
-                <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 ${
-                    idx < step
-                      ? "bg-accent text-white"
-                      : idx === step
-                      ? "bg-primary text-white ring-4 ring-primary/20"
-                      : "bg-muted text-muted-foreground"
-                  }`}
-                >
-                  {idx < step ? <CheckCircle size={16} /> : idx + 1}
+                <div className={`w-8 h-8 flex items-center justify-center text-sm font-bold transition-all duration-300 ${
+                  idx < step ? "bg-accent text-white" : idx === step ? "bg-primary text-white ring-4 ring-primary/20" : "bg-muted text-muted-foreground"
+                }`}>
+                  {idx < step ? <CheckCircle size={16} weight="bold" /> : idx + 1}
                 </div>
-                <span
-                  className={`text-xs mt-1 hidden sm:block transition-colors ${
-                    idx === step ? "text-primary font-semibold" : "text-muted-foreground"
-                  }`}
-                >
+                <span className={`text-xs mt-1.5 hidden sm:block transition-colors ${idx === step ? "text-primary font-semibold" : "text-muted-foreground"}`}>
                   {label}
                 </span>
               </div>
             ))}
           </div>
-          <div className="h-1.5 bg-muted rounded-full overflow-hidden">
+          <div className="h-1 bg-muted overflow-hidden">
             <div
-              className="h-full bg-accent rounded-full transition-all duration-500"
+              className="h-full bg-accent transition-all duration-500"
               style={{ width: `${(step / (STEPS.length - 1)) * 100}%` }}
             />
           </div>
         </div>
 
-        {/* Step content */}
-        <div className="bg-white rounded-3xl border border-border shadow-sm p-8 min-h-[360px] flex flex-col">
+        {/* Step card */}
+        <div className="bg-white border border-border p-8 min-h-[360px] flex flex-col">
 
           {/* Step 0: House type */}
           {step === 0 && (
-            <div className="animate-slide-up">
-              <h2 className="text-2xl font-bold text-primary mb-2">Тип дома</h2>
-              <p className="text-muted-foreground mb-6">Выберите тип будущего строения</p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <h2 className="text-2xl font-light text-foreground mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>Тип дома</h2>
+              <p className="text-muted-foreground text-sm mb-7">Выберите тип будущего строения</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {houseTypes.map((t) => (
                   <button
                     key={t.id}
                     onClick={() => setHouseType(t.id)}
-                    className={`text-left p-5 rounded-2xl border-2 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md ${
-                      houseType === t.id
-                        ? "border-accent bg-accent/5 shadow-md"
-                        : "border-border hover:border-accent/40"
+                    className={`text-left p-5 border-2 transition-all duration-200 ${
+                      houseType === t.id ? "border-accent bg-accent/5" : "border-border hover:border-accent/40"
                     }`}
                   >
                     <div className="text-3xl mb-2">{t.icon}</div>
-                    <div className="font-bold text-foreground mb-1">{t.label}</div>
-                    <div className="text-sm text-muted-foreground leading-snug">{t.desc}</div>
-                    <div className="text-xs text-accent font-semibold mt-2">
-                      от {t.priceMin.toLocaleString()} ₽/м²
-                    </div>
+                    <div className="font-bold text-foreground mb-1 text-sm">{t.label}</div>
+                    <div className="text-xs text-muted-foreground leading-snug mb-2">{t.desc}</div>
+                    <div className="text-xs text-accent font-semibold">от {t.priceMin.toLocaleString()} ₽/м²</div>
                   </button>
                 ))}
               </div>
@@ -213,39 +176,27 @@ export default function Calculator() {
 
           {/* Step 1: Area */}
           {step === 1 && (
-            <div className="animate-slide-up">
-              <h2 className="text-2xl font-bold text-primary mb-2">Площадь дома</h2>
-              <p className="text-muted-foreground mb-8">Укажите желаемую общую площадь</p>
+            <div>
+              <h2 className="text-2xl font-light text-foreground mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>Площадь дома</h2>
+              <p className="text-muted-foreground text-sm mb-8">Укажите желаемую общую площадь</p>
               <div className="text-center mb-8">
-                <div className="text-6xl font-bold text-accent mb-1">{area}</div>
-                <div className="text-xl text-muted-foreground">м²</div>
+                <div className="text-6xl font-bold text-accent mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>{area}</div>
+                <div className="text-lg text-muted-foreground">м²</div>
               </div>
               <input
-                type="range"
-                min={30}
-                max={500}
-                step={5}
-                value={area}
+                type="range" min={30} max={500} step={5} value={area}
                 onChange={(e) => setArea(Number(e.target.value))}
-                className="w-full h-2 rounded-full appearance-none bg-muted accent-accent cursor-pointer mb-6"
+                className="w-full h-1.5 appearance-none bg-muted cursor-pointer mb-4"
                 style={{ accentColor: "hsl(var(--accent))" }}
               />
-              <div className="flex justify-between text-sm text-muted-foreground mb-6">
-                <span>30 м²</span>
-                <span>100 м²</span>
-                <span>200 м²</span>
-                <span>300 м²</span>
-                <span>500 м²</span>
+              <div className="flex justify-between text-xs text-muted-foreground mb-6">
+                <span>30 м²</span><span>100 м²</span><span>200 м²</span><span>300 м²</span><span>500 м²</span>
               </div>
               <div className="flex items-center gap-3">
-                <span className="text-sm text-muted-foreground">Или введите точное значение:</span>
-                <input
-                  type="number"
-                  value={area}
-                  min={30}
-                  max={500}
+                <span className="text-sm text-muted-foreground">Точное значение:</span>
+                <input type="number" value={area} min={30} max={500}
                   onChange={(e) => setArea(Math.min(500, Math.max(30, Number(e.target.value))))}
-                  className="w-24 border border-border rounded-lg px-3 py-1.5 text-center font-bold focus:outline-none focus:ring-2 focus:ring-accent/40"
+                  className="w-20 border border-border px-3 py-1.5 text-center font-bold text-sm focus:outline-none focus:border-primary"
                 />
                 <span className="text-sm text-muted-foreground">м²</span>
               </div>
@@ -254,29 +205,23 @@ export default function Calculator() {
 
           {/* Step 2: Floors */}
           {step === 2 && (
-            <div className="animate-slide-up">
-              <h2 className="text-2xl font-bold text-primary mb-2">Этажность</h2>
-              <p className="text-muted-foreground mb-8">Сколько этажей планируете?</p>
-              <div className="grid grid-cols-3 gap-4">
+            <div>
+              <h2 className="text-2xl font-light text-foreground mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>Этажность</h2>
+              <p className="text-muted-foreground text-sm mb-8">Сколько этажей планируете?</p>
+              <div className="grid grid-cols-3 gap-3">
                 {floorOptions.map((f) => (
                   <button
                     key={f.id}
                     onClick={() => setFloors(f.id)}
-                    className={`p-6 rounded-2xl border-2 text-center transition-all duration-200 hover:shadow-md hover:-translate-y-0.5 ${
-                      floors === f.id
-                        ? "border-accent bg-accent/5 shadow-md"
-                        : "border-border hover:border-accent/40"
+                    className={`p-6 border-2 text-center transition-all duration-200 ${
+                      floors === f.id ? "border-accent bg-accent/5" : "border-border hover:border-accent/40"
                     }`}
                   >
                     <div className="text-4xl mb-3">
                       {f.id === "1" ? "🏠" : f.id === "1.5" ? "🏡" : "🏢"}
                     </div>
-                    <div className="font-bold text-foreground">{f.label}</div>
-                    {f.mult > 1 && (
-                      <div className="text-xs text-muted-foreground mt-1">
-                        +{Math.round((f.mult - 1) * 100)}% к цене
-                      </div>
-                    )}
+                    <div className="font-bold text-foreground text-sm">{f.label}</div>
+                    {f.mult > 1 && <div className="text-xs text-muted-foreground mt-1">+{Math.round((f.mult - 1) * 100)}%</div>}
                   </button>
                 ))}
               </div>
@@ -285,9 +230,9 @@ export default function Calculator() {
 
           {/* Step 3: Extras */}
           {step === 3 && (
-            <div className="animate-slide-up">
-              <h2 className="text-2xl font-bold text-primary mb-2">Дополнительные работы</h2>
-              <p className="text-muted-foreground mb-6">Выберите, что включить в расчёт (необязательно)</p>
+            <div>
+              <h2 className="text-2xl font-light text-foreground mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>Дополнительные работы</h2>
+              <p className="text-muted-foreground text-sm mb-6">Выберите, что включить в расчёт (необязательно)</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {extras.map((ex) => {
                   const selected = selectedExtras.includes(ex.id);
@@ -295,43 +240,34 @@ export default function Calculator() {
                     <button
                       key={ex.id}
                       onClick={() => toggleExtra(ex.id)}
-                      className={`flex items-start gap-3 p-4 rounded-2xl border-2 text-left transition-all duration-200 ${
-                        selected
-                          ? "border-accent bg-accent/5"
-                          : "border-border hover:border-accent/40"
+                      className={`flex items-start gap-3 p-4 border-2 text-left transition-all duration-200 ${
+                        selected ? "border-accent bg-accent/5" : "border-border hover:border-accent/40"
                       }`}
                     >
-                      <div
-                        className={`mt-0.5 w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 transition-all ${
-                          selected ? "bg-accent border-accent" : "border-muted-foreground/40"
-                        }`}
-                      >
-                        {selected && <CheckCircle size={12} className="text-white" />}
+                      <div className={`mt-0.5 w-4 h-4 border-2 flex items-center justify-center shrink-0 transition-all ${
+                        selected ? "bg-accent border-accent" : "border-muted-foreground/40"
+                      }`}>
+                        {selected && <CheckCircle size={10} weight="bold" className="text-white" />}
                       </div>
                       <div>
                         <div className="font-semibold text-foreground text-sm">{ex.label}</div>
-                        <div className="text-xs text-muted-foreground">
-                          +{ex.addMin.toLocaleString()}–{ex.addMax.toLocaleString()} ₽/м²
-                        </div>
+                        <div className="text-xs text-muted-foreground">+{ex.addMin.toLocaleString()}–{ex.addMax.toLocaleString()} ₽/м²</div>
                       </div>
                     </button>
                   );
                 })}
               </div>
-              <p className="text-xs text-muted-foreground mt-4">
-                Можно пропустить этот шаг — выберем вместе при звонке
-              </p>
+              <p className="text-xs text-muted-foreground mt-4">Можно пропустить этот шаг — выберем вместе при звонке</p>
             </div>
           )}
 
           {/* Step 4: Result */}
           {step === 4 && !submitted && (
-            <div className="animate-scale-in">
-              <h2 className="text-2xl font-bold text-primary mb-2">Ваш расчёт готов</h2>
-              <p className="text-muted-foreground mb-6">Ориентировочная стоимость строительства</p>
+            <div>
+              <h2 className="text-2xl font-light text-foreground mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>Ваш расчёт готов</h2>
+              <p className="text-muted-foreground text-sm mb-6">Ориентировочная стоимость строительства</p>
 
-              {/* Summary */}
-              <div className="bg-muted/50 rounded-2xl p-5 mb-6">
+              <div className="bg-muted/30 p-5 mb-6 border border-border">
                 <div className="grid grid-cols-2 gap-y-2 text-sm mb-4">
                   <span className="text-muted-foreground">Тип дома:</span>
                   <span className="font-semibold">{selectedType?.label}</span>
@@ -342,125 +278,105 @@ export default function Calculator() {
                   {selectedExtras.length > 0 && (
                     <>
                       <span className="text-muted-foreground">Дополнительно:</span>
-                      <span className="font-semibold">
-                        {selectedExtras.map((id) => extras.find((e) => e.id === id)?.label).join(", ")}
-                      </span>
+                      <span className="font-semibold">{selectedExtras.map(id => extras.find(e => e.id === id)?.label).join(", ")}</span>
                     </>
                   )}
                 </div>
                 <div className="border-t border-border pt-4 text-center">
                   <div className="text-sm text-muted-foreground mb-1">Стоимость строительства:</div>
-                  <div className="text-3xl font-bold text-accent">
+                  <div className="text-3xl font-bold text-accent" style={{ fontFamily: "'Playfair Display', serif" }}>
                     {formatPrice(price.min)} — {formatPrice(price.max)}
                   </div>
-                  <div className="text-xs text-muted-foreground mt-1">
-                    * Ориентировочно. Точная цена — после выезда специалиста
-                  </div>
+                  <div className="text-xs text-muted-foreground mt-1">* Ориентировочно. Точная цена — после выезда специалиста</div>
                 </div>
               </div>
 
-              {/* Contact form */}
-              <p className="text-sm font-semibold mb-3">
-                Оставьте контакты — перезвоним с точным расчётом бесплатно:
-              </p>
+              <p className="text-sm font-semibold mb-3">Оставьте контакты — перезвоним с точным расчётом бесплатно:</p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <input
-                  type="text"
-                  placeholder="Ваше имя"
-                  value={name}
+                  type="text" placeholder="Ваше имя" value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="flex-1 border border-border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent/40 text-sm"
+                  className="flex-1 border border-border px-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors"
                 />
                 <input
-                  type="tel"
-                  placeholder="+7 (___) ___-__-__"
-                  value={phone}
+                  type="tel" placeholder="+7 (___) ___-__-__" value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="flex-1 border border-border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent/40 text-sm"
+                  className="flex-1 border border-border px-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors"
                 />
               </div>
-              <Button
-                className="w-full mt-4 bg-accent hover:bg-primary text-white py-3 text-base font-semibold hover:scale-[1.02] transition-all"
-                onClick={handleSubmit}
-                disabled={!phone}
+              <button
+                className="w-full mt-4 bg-accent hover:bg-primary text-white py-4 text-sm font-semibold transition-all disabled:opacity-50"
+                onClick={handleSubmit} disabled={!phone}
               >
                 Получить точный расчёт бесплатно
-              </Button>
+              </button>
             </div>
           )}
 
-          {/* Submitted state */}
+          {/* Submitted */}
           {step === 4 && submitted && (
-            <div className="flex flex-col items-center justify-center flex-1 text-center animate-scale-in py-8">
-              <div className="w-20 h-20 rounded-full bg-accent/10 flex items-center justify-center mb-5">
-                <CheckCircle size={40} className="text-accent" />
+            <div className="flex flex-col items-center justify-center flex-1 text-center py-10">
+              <div className="w-16 h-16 bg-accent/10 flex items-center justify-center mb-5">
+                <CheckCircle size={36} weight="bold" className="text-accent" />
               </div>
-              <h3 className="text-2xl font-bold text-primary mb-2">Заявка принята!</h3>
-              <p className="text-muted-foreground max-w-sm mb-2">
-                Наш специалист перезвонит вам в течение 15 минут и подготовит точный расчёт.
+              <h3 className="text-2xl font-light text-foreground mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>Заявка принята!</h3>
+              <p className="text-muted-foreground max-w-sm mb-2 text-sm">
+                Наш специалист перезвонит в течение 15 минут и подготовит точный расчёт.
               </p>
               <p className="text-sm text-muted-foreground mb-8">
-                Стоимость консультации: <strong className="text-foreground">бесплатно</strong>
+                Консультация: <strong className="text-foreground">бесплатно</strong>
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
-                <button
-                  onClick={reset}
-                  className="flex items-center gap-2 text-sm text-muted-foreground hover:text-accent transition-colors"
-                >
-                  <RotateCcw size={14} /> Новый расчёт
+                <button onClick={reset} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-accent transition-colors">
+                  <ArrowCounterClockwise size={14} weight="bold" /> Новый расчёт
                 </button>
-                <Link
-                  href="/projects"
-                  className="text-sm bg-accent text-white px-6 py-2.5 rounded-xl hover:bg-primary transition-colors"
-                >
+                <Link href="/projects" className="text-sm bg-accent text-white px-6 py-2.5 hover:bg-primary transition-colors">
                   Смотреть проекты →
                 </Link>
               </div>
             </div>
           )}
 
-          {/* Navigation buttons */}
+          {/* Nav buttons */}
           {step < 4 && (
             <div className="flex items-center justify-between mt-auto pt-8">
               <button
-                onClick={() => setStep((s) => Math.max(0, s - 1))}
+                onClick={() => setStep(s => Math.max(0, s - 1))}
                 disabled={step === 0}
                 className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
               >
-                <ChevronLeft size={16} /> Назад
+                <CaretLeft size={14} weight="bold" /> Назад
               </button>
-
               <div className="flex gap-3">
                 {step === 3 && (
-                  <Button
-                    variant="outline"
+                  <button
                     onClick={() => setStep(4)}
-                    className="text-sm"
+                    className="text-sm px-4 py-2 border border-border text-muted-foreground hover:text-foreground transition-colors"
                   >
                     Пропустить
-                  </Button>
+                  </button>
                 )}
-                <Button
-                  onClick={() => setStep((s) => s + 1)}
+                <button
+                  onClick={() => setStep(s => s + 1)}
                   disabled={!canNext()}
-                  className="bg-accent hover:bg-primary text-white flex items-center gap-1.5 hover:scale-105 transition-all disabled:opacity-50"
+                  className="flex items-center gap-1.5 bg-accent hover:bg-primary text-white px-5 py-2 text-sm font-semibold transition-all disabled:opacity-50"
                 >
-                  {step === 3 ? "Показать результат" : "Далее"} <ChevronRight size={16} />
-                </Button>
+                  {step === 3 ? "Показать результат" : "Далее"} <CaretRight size={14} weight="bold" />
+                </button>
               </div>
             </div>
           )}
         </div>
 
         {/* Trust block */}
-        <div className="mt-8 grid grid-cols-3 gap-4 text-center">
+        <div className="mt-6 grid grid-cols-3 gap-px bg-border">
           {[
             { val: "Бесплатно", label: "консультация и расчёт" },
             { val: "15 мин", label: "время ответа" },
             { val: "Гарантия", label: "цены в договоре" },
           ].map((item, i) => (
-            <div key={i} className="bg-white rounded-2xl p-4 border border-border shadow-sm">
-              <div className="text-lg font-bold text-accent mb-0.5">{item.val}</div>
+            <div key={i} className="bg-white p-5 text-center">
+              <div className="text-base font-bold text-accent mb-0.5">{item.val}</div>
               <div className="text-xs text-muted-foreground">{item.label}</div>
             </div>
           ))}

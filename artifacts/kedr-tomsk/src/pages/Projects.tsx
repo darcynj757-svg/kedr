@@ -1,28 +1,30 @@
 import { useState, useMemo, useEffect } from "react";
 import { Link } from "wouter";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
+import { motion } from "framer-motion";
+import { Funnel, X, ArrowRight } from "@phosphor-icons/react";
 import { projects } from "@/data/projects";
+import PageHero from "@/components/PageHero";
+
+const typeLabels: Record<string, string> = {
+  brus: "Из бруса",
+  brvno: "Из бревна",
+  karkasny: "Каркасный",
+  banya: "Баня/беседка",
+};
 
 export default function Projects() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  useEffect(() => { window.scrollTo(0, 0); }, []);
 
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
   const [areaFilter, setAreaFilter] = useState("all");
   const [floorsFilter, setFloorsFilter] = useState("all");
   const [priceFilter, setPriceFilter] = useState("all");
+  const [showFilters, setShowFilters] = useState(false);
 
-  const handleTypeChange = (type: string, checked: boolean) => {
-    if (checked) {
-      setSelectedTypes([...selectedTypes, type]);
-    } else {
-      setSelectedTypes(selectedTypes.filter((t) => t !== type));
-    }
+  const handleTypeChange = (type: string) => {
+    setSelectedTypes(prev =>
+      prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]
+    );
   };
 
   const resetFilters = () => {
@@ -35,235 +37,235 @@ export default function Projects() {
   const filteredProjects = useMemo(() => {
     return projects.filter((p) => {
       if (selectedTypes.length > 0 && !selectedTypes.includes(p.type)) return false;
-      
       if (areaFilter === "upTo100" && p.area > 100) return false;
       if (areaFilter === "100to200" && (p.area <= 100 || p.area > 200)) return false;
       if (areaFilter === "over200" && p.area <= 200) return false;
-
       if (floorsFilter === "1" && p.floors !== 1) return false;
       if (floorsFilter === "1.5" && p.floors !== 1.5) return false;
       if (floorsFilter === "2" && p.floors !== 2) return false;
-
       if (priceFilter === "upTo2m" && p.price > 2000000) return false;
       if (priceFilter === "2to5m" && (p.price <= 2000000 || p.price > 5000000)) return false;
       if (priceFilter === "over5m" && p.price <= 5000000) return false;
-
       return true;
     });
   }, [selectedTypes, areaFilter, floorsFilter, priceFilter]);
 
+  const hasFilters = selectedTypes.length > 0 || areaFilter !== "all" || floorsFilter !== "all" || priceFilter !== "all";
+
   return (
-    <div className="min-h-screen bg-background fade-in-section visible pt-20" data-testid="projects-page">
-      {/* Hero */}
-      <section className="bg-primary text-white py-16">
-        <div className="container mx-auto px-4 md:px-8">
-          <div className="text-sm mb-4 text-white/70">
-            <Link href="/" className="hover:text-accent transition-colors">Главная</Link> / Каталог проектов
+    <div className="min-h-screen bg-background pt-20">
+      <PageHero
+        title="Каталог проектов"
+        subtitle="Выберите идеальный дом для вашей семьи — из бруса, бревна или каркаса"
+        breadcrumb="Каталог проектов"
+        tag="Проекты"
+        image="/images/projects/d134.jpg"
+      />
+
+      <div className="container mx-auto px-6 md:px-12 py-14">
+        {/* Top bar */}
+        <div className="flex items-center justify-between mb-8 pb-6 border-b border-border">
+          <div>
+            <span className="text-2xl font-bold text-foreground">{filteredProjects.length}</span>
+            <span className="text-muted-foreground ml-2 text-sm">проектов</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Каталог проектов</h1>
-          <p className="text-xl text-white/80">Выберите идеальный дом для вашей семьи</p>
+          <div className="flex items-center gap-3">
+            {hasFilters && (
+              <button
+                onClick={resetFilters}
+                className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-accent transition-colors"
+              >
+                <X size={14} /> Сбросить
+              </button>
+            )}
+            <button
+              onClick={() => setShowFilters(!showFilters)}
+              className={`flex items-center gap-2 px-4 py-2 border text-sm font-medium transition-all ${
+                showFilters || hasFilters
+                  ? "bg-primary text-white border-primary"
+                  : "bg-white text-foreground border-border hover:border-primary"
+              }`}
+            >
+              <Funnel size={16} weight="bold" /> Фильтры {hasFilters && `(${selectedTypes.length + (areaFilter !== "all" ? 1 : 0) + (floorsFilter !== "all" ? 1 : 0) + (priceFilter !== "all" ? 1 : 0)})`}
+            </button>
+          </div>
         </div>
-      </section>
 
-      <div className="container mx-auto px-4 md:px-8 py-12 flex flex-col lg:flex-row gap-8">
-        {/* Sidebar Filters */}
-        <aside className="w-full lg:w-1/4">
-          <div className="bg-white p-6 rounded-xl border border-border shadow-sm sticky top-24">
-            <div className="flex justify-between items-center mb-6">
-              <h3 className="text-xl font-bold">Фильтры</h3>
-              <Button variant="ghost" size="sm" onClick={resetFilters} className="text-xs text-muted-foreground hover:text-primary">
-                Сбросить
-              </Button>
-            </div>
-
-            <div className="space-y-6">
+        {/* Filter bar */}
+        {showFilters && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="mb-10 p-6 bg-white border border-border overflow-hidden"
+          >
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <div>
-                <h4 className="font-semibold mb-3">Тип дома</h4>
+                <div className="text-xs uppercase tracking-[0.15em] font-semibold text-muted-foreground mb-3">Тип дома</div>
                 <div className="space-y-2">
                   {[
                     { id: "brus", label: "Из профилированного бруса" },
                     { id: "brvno", label: "Из рубленого бревна" },
                     { id: "karkasny", label: "Каркасный" },
-                    { id: "banya", label: "Баня/беседка" },
+                    { id: "banya", label: "Баня / беседка" },
                   ].map((type) => (
-                    <div key={type.id} className="flex items-center space-x-2">
-                      <Checkbox 
-                        id={`type-${type.id}`} 
-                        checked={selectedTypes.includes(type.id)}
-                        onCheckedChange={(c) => handleTypeChange(type.id, !!c)}
-                      />
-                      <label htmlFor={`type-${type.id}`} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                        {type.label}
-                      </label>
-                    </div>
+                    <button
+                      key={type.id}
+                      onClick={() => handleTypeChange(type.id)}
+                      className={`flex items-center gap-2 text-sm w-full text-left transition-colors ${
+                        selectedTypes.includes(type.id) ? "text-accent font-semibold" : "text-muted-foreground hover:text-foreground"
+                      }`}
+                    >
+                      <span className={`w-3 h-3 border flex-shrink-0 transition-colors ${
+                        selectedTypes.includes(type.id) ? "bg-accent border-accent" : "border-border"
+                      }`} />
+                      {type.label}
+                    </button>
                   ))}
                 </div>
               </div>
 
               <div>
-                <h4 className="font-semibold mb-3">Площадь</h4>
-                <RadioGroup value={areaFilter} onValueChange={setAreaFilter}>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="all" id="area-all" />
-                    <Label htmlFor="area-all">Все</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="upTo100" id="area-100" />
-                    <Label htmlFor="area-100">до 100 м²</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="100to200" id="area-200" />
-                    <Label htmlFor="area-200">100–200 м²</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="over200" id="area-300" />
-                    <Label htmlFor="area-300">от 200 м²</Label>
-                  </div>
-                </RadioGroup>
+                <div className="text-xs uppercase tracking-[0.15em] font-semibold text-muted-foreground mb-3">Площадь</div>
+                <div className="space-y-2">
+                  {[
+                    { id: "all", label: "Любая" },
+                    { id: "upTo100", label: "до 100 м²" },
+                    { id: "100to200", label: "100–200 м²" },
+                    { id: "over200", label: "от 200 м²" },
+                  ].map(opt => (
+                    <button key={opt.id} onClick={() => setAreaFilter(opt.id)}
+                      className={`text-sm w-full text-left transition-colors block ${areaFilter === opt.id ? "text-accent font-semibold" : "text-muted-foreground hover:text-foreground"}`}>
+                      {opt.label}
+                    </button>
+                  ))}
+                </div>
               </div>
 
               <div>
-                <h4 className="font-semibold mb-3">Этажность</h4>
-                <RadioGroup value={floorsFilter} onValueChange={setFloorsFilter}>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="all" id="floors-all" />
-                    <Label htmlFor="floors-all">Все</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="1" id="floors-1" />
-                    <Label htmlFor="floors-1">1 этаж</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="1.5" id="floors-1.5" />
-                    <Label htmlFor="floors-1.5">1.5 этажа</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="2" id="floors-2" />
-                    <Label htmlFor="floors-2">2 этажа</Label>
-                  </div>
-                </RadioGroup>
+                <div className="text-xs uppercase tracking-[0.15em] font-semibold text-muted-foreground mb-3">Этажность</div>
+                <div className="space-y-2">
+                  {[
+                    { id: "all", label: "Любая" },
+                    { id: "1", label: "1 этаж" },
+                    { id: "1.5", label: "1,5 этажа" },
+                    { id: "2", label: "2 этажа" },
+                  ].map(opt => (
+                    <button key={opt.id} onClick={() => setFloorsFilter(opt.id)}
+                      className={`text-sm w-full text-left transition-colors block ${floorsFilter === opt.id ? "text-accent font-semibold" : "text-muted-foreground hover:text-foreground"}`}>
+                      {opt.label}
+                    </button>
+                  ))}
+                </div>
               </div>
 
               <div>
-                <h4 className="font-semibold mb-3">Стоимость</h4>
-                <RadioGroup value={priceFilter} onValueChange={setPriceFilter}>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="all" id="price-all" />
-                    <Label htmlFor="price-all">Все</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="upTo2m" id="price-2m" />
-                    <Label htmlFor="price-2m">до 2 млн ₽</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="2to5m" id="price-5m" />
-                    <Label htmlFor="price-5m">2–5 млн ₽</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="over5m" id="price-over5m" />
-                    <Label htmlFor="price-over5m">от 5 млн ₽</Label>
-                  </div>
-                </RadioGroup>
+                <div className="text-xs uppercase tracking-[0.15em] font-semibold text-muted-foreground mb-3">Стоимость</div>
+                <div className="space-y-2">
+                  {[
+                    { id: "all", label: "Любая" },
+                    { id: "upTo2m", label: "до 2 млн ₽" },
+                    { id: "2to5m", label: "2–5 млн ₽" },
+                    { id: "over5m", label: "от 5 млн ₽" },
+                  ].map(opt => (
+                    <button key={opt.id} onClick={() => setPriceFilter(opt.id)}
+                      className={`text-sm w-full text-left transition-colors block ${priceFilter === opt.id ? "text-accent font-semibold" : "text-muted-foreground hover:text-foreground"}`}>
+                      {opt.label}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        </aside>
+          </motion.div>
+        )}
 
-        {/* Main Content */}
-        <main className="flex-1">
-          <div className="mb-6 flex justify-between items-center">
-            <h2 className="text-2xl font-bold">Проектов найдено: {filteredProjects.length}</h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Grid */}
+        {filteredProjects.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
             {filteredProjects.map((proj, idx) => (
-              <div
+              <motion.div
                 key={proj.slug}
-                className="group bg-white rounded-2xl overflow-hidden shadow-sm border border-border hover:shadow-2xl hover:-translate-y-1 transition-all duration-500"
-                style={{ transitionDelay: `${idx * 50}ms` }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.5, delay: (idx % 6) * 0.07 }}
+                className="group bg-white overflow-hidden"
               >
-                <div className="relative h-64 overflow-hidden">
-                  <img
-                    src={proj.img}
-                    alt={proj.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  {/* Dark gradient + glass price on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
-                  {proj.badge && (
-                    <Badge className="absolute top-4 left-4 glass text-white border-white/25 px-3 py-1 text-sm font-semibold">
-                      {proj.badge}
-                    </Badge>
-                  )}
-                  <div className="absolute bottom-4 left-4 right-4 opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-400">
-                    <div className="glass rounded-xl px-4 py-2.5 flex items-center justify-between">
-                      <div>
-                        <div className="text-white/70 text-xs">от</div>
-                        <div className="text-white font-bold">{proj.price.toLocaleString()} ₽</div>
+                <Link href={`/projects/${proj.slug}`}>
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <img
+                      src={proj.img}
+                      alt={proj.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+                    {proj.badge && (
+                      <div className="absolute top-4 left-4 bg-accent text-white text-xs font-semibold uppercase tracking-wide px-3 py-1">
+                        {proj.badge}
                       </div>
-                      <Link
-                        href={`/projects/${proj.slug}`}
-                        className="text-accent font-semibold text-sm hover:text-white transition-colors"
-                      >
-                        Открыть →
-                      </Link>
+                    )}
+                    <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-full group-hover:translate-y-0 transition-transform duration-400">
+                      <div className="flex items-end justify-between">
+                        <div>
+                          <div className="text-white/60 text-xs mb-0.5">от</div>
+                          <div className="text-white font-bold text-xl">{proj.price.toLocaleString()} ₽</div>
+                        </div>
+                        <div className="flex items-center gap-1.5 text-accent text-sm font-semibold">
+                          Подробнее <ArrowRight size={14} weight="bold" />
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-primary mb-4 group-hover:text-accent transition-colors duration-300">
-                    {proj.name}
-                  </h3>
-                  <div className="grid grid-cols-3 gap-2 mb-5">
-                    <div className="text-center p-2 bg-muted rounded-xl">
-                      <span className="block text-xs text-muted-foreground mb-0.5">Площадь</span>
-                      <span className="font-bold text-foreground text-sm">{proj.area} м²</span>
-                    </div>
-                    <div className="text-center p-2 bg-muted rounded-xl">
-                      <span className="block text-xs text-muted-foreground mb-0.5">Этажей</span>
-                      <span className="font-bold text-foreground text-sm">{proj.floors}</span>
-                    </div>
-                    <div className="text-center p-2 bg-muted rounded-xl">
-                      <span className="block text-xs text-muted-foreground mb-0.5">Комнат</span>
-                      <span className="font-bold text-foreground text-sm">{proj.beds}</span>
+
+                  <div className="p-5">
+                    <h3 className="font-bold text-foreground mb-3 group-hover:text-accent transition-colors">
+                      {proj.name}
+                    </h3>
+                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                      <span>{proj.area} м²</span>
+                      <span className="w-1 h-1 rounded-full bg-border" />
+                      <span>{proj.floors} эт.</span>
+                      <span className="w-1 h-1 rounded-full bg-border" />
+                      <span>{proj.beds} комн.</span>
+                      <span className="w-1 h-1 rounded-full bg-border" />
+                      <span className="text-xs bg-muted px-2 py-0.5 text-foreground">{typeLabels[proj.type] ?? proj.type}</span>
                     </div>
                   </div>
-                  <div className="flex items-center justify-between pt-4 border-t border-border">
-                    <div>
-                      <span className="text-xs text-muted-foreground">от</span>
-                      <div className="text-lg font-bold text-primary">{proj.price.toLocaleString()} ₽</div>
-                    </div>
-                    <Button
-                      className="bg-accent hover:bg-primary text-white hover:scale-105 transition-all duration-200"
-                      asChild
-                    >
-                      <Link href={`/projects/${proj.slug}`}>Подробнее</Link>
-                    </Button>
-                  </div>
-                </div>
-              </div>
+                </Link>
+              </motion.div>
             ))}
           </div>
-
-          {filteredProjects.length === 0 && (
-            <div className="text-center py-16 bg-white rounded-xl border border-border">
-              <p className="text-lg text-muted-foreground">По вашим критериям не найдено проектов. Попробуйте изменить фильтры.</p>
-              <Button variant="outline" className="mt-4" onClick={resetFilters}>Сбросить фильтры</Button>
-            </div>
-          )}
-        </main>
+        ) : (
+          <div className="text-center py-24 bg-white border border-border">
+            <p className="text-lg text-muted-foreground mb-4">По вашим критериям не найдено проектов.</p>
+            <button onClick={resetFilters} className="text-sm text-accent hover:underline">
+              Сбросить фильтры
+            </button>
+          </div>
+        )}
       </div>
 
-      {/* CTA Banner */}
-      <section className="bg-primary text-white py-16">
-        <div className="container mx-auto px-4 md:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Не нашли подходящий проект?</h2>
-          <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
-            Разработаем индивидуальный проект с учетом всех ваших пожеланий, особенностей участка и бюджета.
-          </p>
-          <Button size="lg" className="bg-accent hover:bg-accent/90 text-white" asChild>
-            <Link href="/contacts">Заказать индивидуальный проект</Link>
-          </Button>
+      {/* Dark CTA */}
+      <section className="bg-[#0d1f12] text-white py-24">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="max-w-2xl">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-px bg-accent" />
+              <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">Индивидуальный проект</span>
+            </div>
+            <h2 className="font-light text-4xl md:text-5xl text-white mb-6 leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+              Не нашли подходящий проект?
+            </h2>
+            <p className="text-white/60 text-lg font-light mb-10 leading-relaxed">
+              Разработаем индивидуальный проект с учётом всех ваших пожеланий, особенностей участка и бюджета.
+            </p>
+            <Link
+              href="/contacts"
+              className="inline-flex items-center gap-3 bg-accent hover:bg-accent/90 text-white font-semibold px-8 py-4 transition-all duration-300 hover:gap-5"
+            >
+              Заказать индивидуальный проект <ArrowRight size={18} weight="bold" />
+            </Link>
+          </div>
         </div>
       </section>
     </div>
