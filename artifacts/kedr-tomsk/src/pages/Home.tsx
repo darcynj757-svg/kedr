@@ -229,15 +229,9 @@ export default function Home() {
                 {/* Gradient overlay — stronger at bottom */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10 group-hover:from-black/90 group-hover:via-black/45 transition-all duration-500" />
 
-                {/* Icon top-left with blurred glass background */}
-                <div className="absolute top-6 left-6">
-                  <motion.div
-                    className="w-12 h-12 flex items-center justify-center text-white backdrop-blur-md bg-white/15 border border-white/20 group-hover:bg-accent group-hover:border-accent group-hover:text-black transition-all duration-400"
-                    whileHover={{ rotate: 5, scale: 1.08 }}
-                    transition={{ duration: 0.25 }}
-                  >
-                    <adv.icon size={22} weight="duotone" />
-                  </motion.div>
+                {/* Giant frosted glass block filling 90% of tile */}
+                <div className="absolute inset-[5%] flex items-center justify-center backdrop-blur-xl bg-white/10 border border-white/15 group-hover:bg-white/15 transition-all duration-500">
+                  <adv.icon size={100} weight="duotone" className="text-white/80 group-hover:text-white transition-colors duration-400" />
                 </div>
 
                 {/* Text bottom */}
