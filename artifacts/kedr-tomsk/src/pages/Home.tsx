@@ -113,7 +113,7 @@ export default function Home() {
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               transition={{ delay: 0.25, duration: 0.75, ease }}
-              className="text-5xl md:text-7xl lg:text-8xl font-light text-white leading-[1.0] tracking-tight"
+              className="text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.0] tracking-tight"
             >
               Строим деревянные
             </motion.h1>
