@@ -138,8 +138,8 @@ export default function Home() {
             className="w-full h-full object-cover scale-105"
             style={{ transformOrigin: "center center" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/92 via-primary/60 to-transparent"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/46 via-primary/30 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
         </div>
 
         {/* Floating semi-transparent badges — top right */}
