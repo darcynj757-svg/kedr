@@ -33,20 +33,20 @@ export default function Header() {
       <header
         className={`fixed top-0 w-full z-50 transition-all duration-500 ${
           isScrolled
-            ? "glass shadow-lg py-2"
+            ? "bg-white/95 backdrop-blur-xl shadow-lg py-2"
             : "bg-transparent py-4"
         }`}
         data-testid="header-nav"
-        style={isScrolled ? {} : { background: "rgba(255,255,255,0.96)" }}
       >
         <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
-          <Link href="/" className="flex items-center group">
-            <img
-              src="/logo.png"
-              alt="Кедр-Томск"
-              className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-              style={{ mixBlendMode: "multiply" }}
-            />
+          <Link href="/" className="flex items-center group select-none">
+            <span className="text-xl font-bold tracking-tight transition-transform duration-300 group-hover:scale-105 inline-flex items-baseline gap-0.5">
+              <span
+                className={`transition-colors duration-500 ${isScrolled ? "text-foreground" : "text-white"}`}
+                style={!isScrolled ? { textShadow: "0 1px 4px rgba(0,0,0,0.5)" } : {}}
+              >Кедр</span>
+              <span className="text-accent" style={!isScrolled ? { textShadow: "0 1px 4px rgba(0,0,0,0.3)" } : {}}>Tomsk</span>
+            </span>
           </Link>
 
           <nav className="hidden lg:flex items-center gap-4">
@@ -57,7 +57,11 @@ export default function Header() {
                   key={link.label}
                   href={link.to}
                   className={`relative text-xs font-medium transition-colors whitespace-nowrap group ${
-                    isActive ? "text-accent" : "text-foreground hover:text-accent"
+                    isActive
+                      ? "text-accent"
+                      : isScrolled
+                      ? "text-foreground hover:text-accent"
+                      : "text-white/90 hover:text-white"
                   }`}
                 >
                   {link.label}
@@ -74,7 +78,7 @@ export default function Header() {
           <div className="hidden lg:flex items-center gap-3">
             <a
               href="tel:+73822334439"
-              className="text-xs font-bold text-foreground hover:text-accent whitespace-nowrap transition-colors duration-200"
+              className={`text-xs font-bold whitespace-nowrap transition-colors duration-200 ${isScrolled ? "text-foreground hover:text-accent" : "text-white hover:text-white/80"}`}
             >
               +7 (3822) 33-44-39
             </a>
@@ -96,7 +100,7 @@ export default function Header() {
           </div>
 
           <button
-            className="lg:hidden text-foreground p-2 transition-transform duration-200 hover:scale-110"
+            className={`lg:hidden p-2 transition-transform duration-200 hover:scale-110 ${isScrolled ? "text-foreground" : "text-white"}`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
