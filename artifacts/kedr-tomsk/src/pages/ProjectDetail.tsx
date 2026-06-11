@@ -30,7 +30,7 @@ export default function ProjectDetail() {
   const relatedProjects = projects.filter((p) => p.slug !== slug).slice(0, 3);
 
   return (
-    <div className="min-h-screen bg-background fade-in-section visible" data-testid="project-detail-page">
+    <div className="min-h-screen bg-background fade-in-section visible pt-20" data-testid="project-detail-page">
       {/* Hero */}
       <section className="bg-primary text-white py-12">
         <div className="container mx-auto px-4 md:px-8">

@@ -79,7 +79,7 @@ export default function Gallery() {
   const currentItem = lightboxIdx !== null ? filtered[lightboxIdx] : null;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pt-20">
       {/* Hero */}
       <section className="bg-primary text-white py-16">
         <div className="container mx-auto px-4 md:px-8">

@@ -159,7 +159,7 @@ export default function Geography() {
   const activeCity = cities.find((c) => c.name === active);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pt-20">
       {/* Hero */}
       <section className="bg-primary text-white py-14">
         <div className="container mx-auto px-4 md:px-8">

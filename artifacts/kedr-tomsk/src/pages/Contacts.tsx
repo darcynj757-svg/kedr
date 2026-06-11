@@ -57,7 +57,7 @@ export default function Contacts() {
   }
 
   return (
-    <div className="min-h-screen bg-background fade-in-section visible" data-testid="contacts-page">
+    <div className="min-h-screen bg-background fade-in-section visible pt-20" data-testid="contacts-page">
       {/* Hero */}
       <section className="bg-muted py-16">
         <div className="container mx-auto px-4 md:px-8">

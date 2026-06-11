@@ -86,7 +86,7 @@ export default function Services() {
   ];
 
   return (
-    <div className="min-h-screen bg-background fade-in-section visible" data-testid="services-page">
+    <div className="min-h-screen bg-background fade-in-section visible pt-20" data-testid="services-page">
       {/* Hero */}
       <section className="bg-primary text-white py-16">
         <div className="container mx-auto px-4 md:px-8">

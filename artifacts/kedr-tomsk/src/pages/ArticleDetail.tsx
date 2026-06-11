@@ -163,7 +163,7 @@ export default function ArticleDetail() {
   const next = articles[currentIdx + 1];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pt-20">
       {/* Hero image */}
       <div className="relative h-72 md:h-96 overflow-hidden">
         <img
