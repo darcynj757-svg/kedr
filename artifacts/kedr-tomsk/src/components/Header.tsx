@@ -39,11 +39,13 @@ export default function Header() {
         data-testid="header-nav"
       >
         <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
-          <Link href="/" className="flex items-center group select-none">
-            <span className="text-xl font-bold tracking-tight transition-transform duration-300 group-hover:scale-105 inline-flex items-baseline gap-0.5">
-              <span className="text-white" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>Кедр</span>
-              <span className="text-accent" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.3)" }}>Tomsk</span>
-            </span>
+          <Link href="/" className="flex items-center group">
+            <img
+              src="/logo.png"
+              alt="Кедр-Томск"
+              className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              style={{ filter: "drop-shadow(0 1px 4px rgba(0,0,0,0.4))" }}
+            />
           </Link>
 
           <nav className="hidden lg:flex items-center gap-4">
