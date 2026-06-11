@@ -34,12 +34,12 @@ const testimonials = [
 ];
 
 const advantages = [
-  { icon: ShieldCheck, title: "Более 25 лет на рынке", desc: "Строим качественные дома с 2001 года. Сотни довольных клиентов по всей России" },
-  { icon: Factory, title: "Собственное производство", desc: "Собственная площадка в промзоне Томска. До 500 м³ профилированного бруса в месяц" },
-  { icon: Wrench, title: "Полный цикл под ключ", desc: "От проекта до ключей в руках: один подрядчик, ноль субподрядчиков" },
-  { icon: Timer, title: "Фиксированная цена", desc: "Фиксируем сроки и стоимость в договоре. Штраф за каждый день просрочки" },
-  { icon: SealCheck, title: "Гарантия на все работы", desc: "Гарантия 5 лет на конструктив и 2 года на отделочные работы" },
-  { icon: Leaf, title: "Экологичные материалы", desc: "Строим из кедра, сосны и лиственницы — натуральное дерево без синтетики" },
+  { icon: ShieldCheck, title: "Более 25 лет на рынке", desc: "Строим качественные дома с 2001 года. Сотни довольных клиентов по всей России", img: "/images/about/about-1.jpg" },
+  { icon: Factory, title: "Собственное производство", desc: "Собственная площадка в промзоне Томска. До 500 м³ профилированного бруса в месяц", img: "/images/production/prod-1.jpg" },
+  { icon: Wrench, title: "Полный цикл под ключ", desc: "От проекта до ключей в руках: один подрядчик, ноль субподрядчиков", img: "/images/about/about-3.jpg" },
+  { icon: Timer, title: "Фиксированная цена", desc: "Фиксируем сроки и стоимость в договоре. Штраф за каждый день просрочки", img: "/images/production/prod-3.jpg" },
+  { icon: SealCheck, title: "Гарантия на все работы", desc: "Гарантия 5 лет на конструктив и 2 года на отделочные работы", img: "/images/gallery/gallery-2.jpg" },
+  { icon: Leaf, title: "Экологичные материалы", desc: "Строим из кедра, сосны и лиственницы — натуральное дерево без синтетики", img: "/images/gallery/gallery-5.jpg" },
 ];
 
 export default function Home() {
@@ -210,28 +210,47 @@ export default function Home() {
             </FadeRight>
           </div>
 
-          <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border" stagger={0.07}>
+          <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3" stagger={0.07}>
             {advantages.map((adv, i) => (
               <motion.div
                 key={i}
                 variants={staggerItem}
-                className="group bg-card hover:bg-[#faf9f7] p-10 transition-colors duration-400 cursor-default"
+                className="group relative overflow-hidden cursor-default"
+                style={{ height: "340px" }}
               >
-                <motion.div
-                  className="w-12 h-12 flex items-center justify-center mb-8 text-primary border border-primary/15 bg-primary/5 group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all duration-400"
-                  whileHover={{ rotate: 4, scale: 1.06 }}
-                  transition={{ duration: 0.25 }}
-                >
-                  <adv.icon size={22} weight="duotone" />
-                </motion.div>
-                <h3 className="text-sm font-semibold mb-3 text-foreground tracking-tight">{adv.title}</h3>
-                <motion.div
-                  className="h-px bg-accent/40 mb-4"
-                  style={{ width: "1.5rem" }}
-                  whileHover={{ width: "3rem" }}
-                  transition={{ duration: 0.35 }}
+                {/* Background image */}
+                <motion.img
+                  src={adv.img}
+                  alt={adv.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  whileHover={{ scale: 1.07 }}
+                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                 />
-                <p className="text-muted-foreground text-sm leading-relaxed font-light">{adv.desc}</p>
+                {/* Gradient overlay — stronger at bottom */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10 group-hover:from-black/90 group-hover:via-black/45 transition-all duration-500" />
+
+                {/* Icon top-left */}
+                <div className="absolute top-6 left-6">
+                  <motion.div
+                    className="w-11 h-11 flex items-center justify-center border border-white/25 bg-white/10 backdrop-blur-sm text-white group-hover:bg-accent group-hover:border-accent group-hover:text-black transition-all duration-400"
+                    whileHover={{ rotate: 5, scale: 1.08 }}
+                    transition={{ duration: 0.25 }}
+                  >
+                    <adv.icon size={20} weight="duotone" />
+                  </motion.div>
+                </div>
+
+                {/* Text bottom */}
+                <div className="absolute bottom-0 left-0 right-0 p-7">
+                  <motion.div
+                    className="h-px bg-accent mb-4"
+                    style={{ width: "1.5rem" }}
+                    whileHover={{ width: "3rem" }}
+                    transition={{ duration: 0.35 }}
+                  />
+                  <h3 className="text-base font-bold text-white mb-2 tracking-tight leading-snug">{adv.title}</h3>
+                  <p className="text-white/60 text-sm leading-relaxed font-light translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-400">{adv.desc}</p>
+                </div>
               </motion.div>
             ))}
           </StaggerChildren>
