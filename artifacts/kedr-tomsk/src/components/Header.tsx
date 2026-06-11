@@ -34,7 +34,7 @@ export default function Header() {
         className={`fixed top-0 w-full z-50 transition-all duration-500 ${
           isScrolled
             ? "bg-white/95 backdrop-blur-xl border-b border-border shadow-sm py-3"
-            : "bg-transparent border-b border-transparent py-5"
+            : "liquid-glass border-b border-white/10 py-5"
         }`}
         data-testid="header-nav"
       >

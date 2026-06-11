@@ -89,7 +89,7 @@ export default function Home() {
               initial={{ opacity: 0, x: 24 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.7 + i * 0.12, duration: 0.6, ease }}
-              className="border border-white/12 bg-black/45 backdrop-blur-md px-5 py-3 min-w-[130px]"
+              className="liquid-glass-dark px-5 py-3 min-w-[130px]"
             >
               <div className="text-2xl font-bold text-accent tracking-tight">{s.val}</div>
               <div className="text-[9px] text-white/40 uppercase tracking-[0.22em] mt-0.5">{s.label}</div>
@@ -161,7 +161,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9, duration: 0.6 }}
-          className="absolute bottom-0 left-0 w-full z-10 bg-black/40 backdrop-blur-sm border-t border-white/8"
+          className="absolute bottom-0 left-0 w-full z-10 liquid-glass-dark border-t border-white/10"
         >
           <div className="container mx-auto px-6 md:px-10 py-3 hidden md:flex justify-between items-center text-[10px] text-white/30 uppercase tracking-[0.22em]">
             {["Собственное производство", "Работаем с 2001 года", "Профилированный брус 200×300 мм", "Гарантия 5 лет"].map((item, i) => (
