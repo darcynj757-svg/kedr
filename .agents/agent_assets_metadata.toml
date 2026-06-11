@@ -1,8 +1,13 @@
 uploads = []
-outputs = []
 
 [[generated]]
 id = "kcPvPbL_F4WePcsHnBon9"
 uri = "file://artifacts/kedr-tomsk/public/logo.png"
 type = "image"
 title = "generated_image"
+
+[[outputs]]
+id = "qqNe4-AcjJaATZO7xAerf"
+uri = "file://artifacts/kedr-tomsk/public/logo.png"
+type = "image"
+title = "Логотип Kedr Tomsk 3D"
