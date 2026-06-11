@@ -10,7 +10,7 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 40);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -31,10 +31,10 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+        className={`fixed top-0 w-full z-50 transition-all duration-700 ${
           isScrolled
-            ? "bg-black/30 backdrop-blur-md shadow-lg py-2"
-            : "bg-transparent py-4"
+            ? "bg-black/85 backdrop-blur-xl border-b border-white/8 py-3"
+            : "bg-transparent border-b border-transparent py-5"
         }`}
         data-testid="header-nav"
       >
@@ -43,50 +43,47 @@ export default function Header() {
             <img
               src="/logo.png"
               alt="Кедр-Томск"
-              className="h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-              style={{ filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.5))" }}
+              className="h-12 w-auto object-contain transition-opacity duration-300 group-hover:opacity-80"
             />
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-4">
+          <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => {
               const isActive = location === link.to;
               return (
                 <Link
                   key={link.label}
                   href={link.to}
-                  className={`relative text-xs font-medium transition-colors whitespace-nowrap group ${
-                    isActive ? "text-accent" : "text-white/90 hover:text-white"
+                  className={`relative text-xs font-medium transition-colors whitespace-nowrap uppercase tracking-widest ${
+                    isActive ? "text-accent" : "text-white/45 hover:text-white"
                   }`}
                 >
                   {link.label}
-                  <span
-                    className={`absolute -bottom-1 left-0 h-0.5 bg-accent rounded-full transition-all duration-300 ${
-                      isActive ? "w-full" : "w-0 group-hover:w-full"
-                    }`}
-                  />
+                  {isActive && (
+                    <span className="absolute -bottom-1 left-0 w-full h-px bg-accent" />
+                  )}
                 </Link>
               );
             })}
           </nav>
 
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-5">
             <a
               href="tel:+73822334439"
-              className="text-xs font-bold whitespace-nowrap transition-colors duration-200 text-white hover:text-white/80"
+              className="text-xs font-semibold whitespace-nowrap text-white/60 hover:text-white transition-colors duration-200 tracking-widest uppercase"
             >
               +7 (3822) 33-44-39
             </a>
             <Button
               size="sm"
-              className="bg-white/20 border border-white/50 text-white hover:bg-white/30 text-xs whitespace-nowrap transition-all duration-200 hover:scale-105 backdrop-blur-sm"
+              className="border border-white/15 bg-transparent text-white/60 hover:bg-white/8 hover:text-white hover:border-white/30 text-xs whitespace-nowrap rounded-sm tracking-widest uppercase px-5 transition-all duration-300"
               asChild
             >
               <Link href="/contacts">Заказать звонок</Link>
             </Button>
             <Button
               size="sm"
-              className="btn-accent-gradient text-white text-xs whitespace-nowrap shimmer transition-all duration-200 hover:scale-105 hover:shadow-lg"
+              className="btn-accent-gradient text-black text-xs whitespace-nowrap rounded-sm tracking-widest uppercase px-5 transition-all duration-300 hover:opacity-90"
               asChild
             >
               <Link href="/calculator">Рассчитать стоимость</Link>
@@ -94,16 +91,16 @@ export default function Header() {
           </div>
 
           <button
-            className="lg:hidden p-2 transition-transform duration-200 hover:scale-110 text-white"
+            className="lg:hidden p-2 text-white/60 hover:text-white transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl shadow-2xl border-t py-4 flex flex-col px-4 gap-4 animate-slide-up">
+          <div className="lg:hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-xl border-t border-white/8 py-6 flex flex-col px-6 gap-0 animate-slide-up">
             {navLinks.map((link) => {
               const isActive = location === link.to;
               return (
@@ -111,22 +108,22 @@ export default function Header() {
                   key={link.label}
                   href={link.to}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`text-lg font-medium py-2 border-b border-border/50 transition-colors ${
-                    isActive ? "text-accent" : "text-foreground"
+                  className={`text-sm font-medium py-4 border-b border-white/5 transition-colors uppercase tracking-widest ${
+                    isActive ? "text-accent" : "text-white/50 hover:text-white"
                   }`}
                 >
                   {link.label}
                 </Link>
               );
             })}
-            <div className="flex flex-col gap-3 mt-2">
-              <a href="tel:+73822334439" className="text-lg font-bold text-center py-2">
+            <div className="flex flex-col gap-3 mt-6">
+              <a href="tel:+73822334439" className="text-base font-semibold text-center py-2 text-white tracking-wider">
                 +7 (3822) 33-44-39
               </a>
-              <Button variant="outline" className="w-full" asChild onClick={() => setIsMobileMenuOpen(false)}>
+              <Button variant="outline" className="w-full border-white/15 text-white/60 hover:text-white rounded-sm tracking-widest uppercase text-xs" asChild onClick={() => setIsMobileMenuOpen(false)}>
                 <Link href="/contacts">Заказать звонок</Link>
               </Button>
-              <Button className="btn-accent-gradient text-white w-full" asChild onClick={() => setIsMobileMenuOpen(false)}>
+              <Button className="btn-accent-gradient text-black w-full rounded-sm tracking-widest uppercase text-xs font-semibold" asChild onClick={() => setIsMobileMenuOpen(false)}>
                 <Link href="/calculator">Рассчитать стоимость</Link>
               </Button>
             </div>
