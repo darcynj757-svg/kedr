@@ -34,12 +34,12 @@ const testimonials = [
 ];
 
 const advantages = [
-  { icon: ShieldCheck, title: "Более 25 лет на рынке", desc: "Строим качественные дома с 2001 года. Сотни довольных клиентов по всей России", img: "/images/about/about-1.jpg" },
-  { icon: Factory, title: "Собственное производство", desc: "Собственная площадка в промзоне Томска. До 500 м³ профилированного бруса в месяц", img: "/images/production/prod-1.jpg" },
-  { icon: Wrench, title: "Полный цикл под ключ", desc: "От проекта до ключей в руках: один подрядчик, ноль субподрядчиков", img: "/images/about/about-3.jpg" },
-  { icon: Timer, title: "Фиксированная цена", desc: "Фиксируем сроки и стоимость в договоре. Штраф за каждый день просрочки", img: "/images/production/prod-3.jpg" },
-  { icon: SealCheck, title: "Гарантия на все работы", desc: "Гарантия 5 лет на конструктив и 2 года на отделочные работы", img: "/images/gallery/gallery-2.jpg" },
-  { icon: Leaf, title: "Экологичные материалы", desc: "Строим из кедра, сосны и лиственницы — натуральное дерево без синтетики", img: "/images/gallery/gallery-5.jpg" },
+  { icon: ShieldCheck, stat: "25+", unit: "лет", label: "Более 25 лет на рынке", desc: "Строим дома с 2001 года", img: "/images/about/about-1.jpg" },
+  { icon: Factory, stat: "500", unit: "м³", label: "Собственное производство", desc: "профилированного бруса в месяц", img: "/images/production/prod-1.jpg" },
+  { icon: Wrench, stat: "320+", unit: "домов", label: "Полный цикл под ключ", desc: "сдано по всей России", img: "/images/about/about-3.jpg" },
+  { icon: Timer, stat: "0", unit: "скрытых", label: "Фиксированная цена", desc: "доплат — всё в договоре", img: "/images/production/prod-3.jpg" },
+  { icon: SealCheck, stat: "5", unit: "лет", label: "Гарантия на конструктив", desc: "и 2 года на отделочные работы", img: "/images/gallery/gallery-2.jpg" },
+  { icon: Leaf, stat: "100%", unit: "", label: "Экологичные материалы", desc: "Кедр, сосна и лиственница", img: "/images/gallery/gallery-5.jpg" },
 ];
 
 export default function Home() {
@@ -216,34 +216,42 @@ export default function Home() {
                 key={i}
                 variants={staggerItem}
                 className="group relative overflow-hidden cursor-default"
-                style={{ height: "340px" }}
+                style={{ height: "360px" }}
               >
                 {/* Background image */}
                 <motion.img
                   src={adv.img}
-                  alt={adv.title}
+                  alt={adv.label}
                   className="absolute inset-0 w-full h-full object-cover"
-                  whileHover={{ scale: 1.07 }}
-                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={{ scale: 1.06 }}
+                  transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 />
-                {/* Gradient overlay — stronger at bottom */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10 group-hover:from-black/90 group-hover:via-black/45 transition-all duration-500" />
+                {/* Dark overlay */}
+                <div className="absolute inset-0 bg-black/55 group-hover:bg-black/65 transition-all duration-500" />
 
-                {/* Giant frosted glass block filling 90% of tile */}
-                <div className="absolute inset-[5%] flex items-center justify-center backdrop-blur-xl bg-white/10 border border-white/15 group-hover:bg-white/15 transition-all duration-500">
-                  <adv.icon size={100} weight="duotone" className="text-white/80 group-hover:text-white transition-colors duration-400" />
-                </div>
+                {/* Content centered */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+                  {/* Icon */}
+                  <div className="mb-5 w-14 h-14 flex items-center justify-center border border-white/20 bg-white/10 backdrop-blur-sm text-white group-hover:bg-accent group-hover:border-accent group-hover:text-black transition-all duration-400">
+                    <adv.icon size={26} weight="duotone" />
+                  </div>
 
-                {/* Text bottom */}
-                <div className="absolute bottom-0 left-0 right-0 p-7">
-                  <motion.div
-                    className="h-px bg-accent mb-4"
-                    style={{ width: "1.5rem" }}
-                    whileHover={{ width: "3rem" }}
-                    transition={{ duration: 0.35 }}
-                  />
-                  <h3 className="text-base font-bold text-white mb-2 tracking-tight leading-snug">{adv.title}</h3>
-                  <p className="text-white/60 text-sm leading-relaxed font-light translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-400">{adv.desc}</p>
+                  {/* Big stat */}
+                  <div className="flex items-end gap-2 mb-1">
+                    <span className="text-7xl font-bold text-white leading-none tracking-tight drop-shadow-lg">
+                      {adv.stat}
+                    </span>
+                    {adv.unit && (
+                      <span className="text-accent text-xl font-semibold mb-2 leading-none">{adv.unit}</span>
+                    )}
+                  </div>
+
+                  {/* Accent line */}
+                  <div className="w-8 h-px bg-accent my-4" />
+
+                  {/* Label */}
+                  <h3 className="text-white text-sm font-bold uppercase tracking-widest mb-1">{adv.label}</h3>
+                  <p className="text-white/50 text-xs leading-relaxed font-light opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-400">{adv.desc}</p>
                 </div>
               </motion.div>
             ))}
