@@ -1,4 +1,3 @@
-
 import { Link } from "wouter";
 import { FaVk, FaTelegram, FaYoutube } from "react-icons/fa";
 
@@ -23,27 +22,27 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-black border-t border-white/8 text-white" data-testid="footer">
+    <footer className="bg-[#0d1f12] border-t border-white/8 text-white" data-testid="footer">
       <div className="container mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 py-16 border-b border-white/8">
           <div>
             <Link href="/" className="inline-block mb-6">
-              <img src="/logo.png" alt="Кедр-Томск" className="h-12 w-auto object-contain" style={{ filter: "brightness(1.1)" }} />
+              <img src="/logo.png" alt="Кедр-Томск" className="h-12 w-auto object-contain" style={{ filter: "brightness(1.15)" }} />
             </Link>
-            <p className="text-white/35 mb-8 text-sm leading-relaxed font-light">
+            <p className="text-white/40 mb-8 text-sm leading-relaxed font-light">
               Строительство деревянных домов под ключ в Томске и Томской области. Собственное производство, гарантия качества 5 лет.
             </p>
             <div className="flex gap-3">
               {[FaVk, FaTelegram, FaYoutube].map((Icon, i) => (
-                <a key={i} href="#" className="w-9 h-9 border border-white/10 flex items-center justify-center text-white/40 hover:border-accent hover:text-accent transition-all duration-300 rounded-sm">
-                  <Icon size={16} />
+                <a key={i} href="#" className="w-9 h-9 border border-white/10 flex items-center justify-center text-white/35 hover:border-accent hover:text-accent transition-all duration-300 rounded-sm">
+                  <Icon size={15} />
                 </a>
               ))}
             </div>
           </div>
-          
+
           <div>
-            <h4 className="text-xs font-semibold mb-6 uppercase tracking-[0.2em] text-white/40">Навигация</h4>
+            <h4 className="text-[10px] font-semibold mb-6 uppercase tracking-[0.22em] text-white/35">Навигация</h4>
             <ul className="space-y-3">
               {navLinks.map((link) => (
                 <li key={link.label}>
@@ -54,9 +53,9 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-          
+
           <div>
-            <h4 className="text-xs font-semibold mb-6 uppercase tracking-[0.2em] text-white/40">Услуги</h4>
+            <h4 className="text-[10px] font-semibold mb-6 uppercase tracking-[0.22em] text-white/35">Услуги</h4>
             <ul className="space-y-3 mb-8">
               <li><Link href="/services" className="text-white/40 hover:text-accent transition-colors text-sm font-light">Дома из профилированного бруса</Link></li>
               <li><Link href="/services" className="text-white/40 hover:text-accent transition-colors text-sm font-light">Дома из рубленого бревна</Link></li>
@@ -64,7 +63,7 @@ export default function Footer() {
               <li><Link href="/services" className="text-white/40 hover:text-accent transition-colors text-sm font-light">Бани и сауны</Link></li>
               <li><Link href="/services" className="text-white/40 hover:text-accent transition-colors text-sm font-light">Проектирование</Link></li>
             </ul>
-            <h4 className="text-xs font-semibold mb-4 uppercase tracking-[0.2em] text-white/40">Полезное</h4>
+            <h4 className="text-[10px] font-semibold mb-4 uppercase tracking-[0.22em] text-white/35">Полезное</h4>
             <ul className="space-y-3">
               {usefulLinks.map((link) => (
                 <li key={link.to}>
@@ -75,31 +74,31 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-          
+
           <div>
-            <h4 className="text-xs font-semibold mb-6 uppercase tracking-[0.2em] text-white/40">Контакты</h4>
+            <h4 className="text-[10px] font-semibold mb-6 uppercase tracking-[0.22em] text-white/35">Контакты</h4>
             <ul className="space-y-5">
               <li className="flex flex-col">
-                <span className="text-white/25 text-xs uppercase tracking-widest mb-1">Телефон</span>
+                <span className="text-white/25 text-[10px] uppercase tracking-widest mb-1">Телефон</span>
                 <a href="tel:+73822334439" className="text-lg font-semibold hover:text-accent transition-colors tracking-tight">+7 (3822) 33-44-39</a>
               </li>
               <li className="flex flex-col">
-                <span className="text-white/25 text-xs uppercase tracking-widest mb-1">Email</span>
-                <a href="mailto:mail@kedr-tomsk.ru" className="text-white/50 hover:text-accent transition-colors text-sm">mail@kedr-tomsk.ru</a>
+                <span className="text-white/25 text-[10px] uppercase tracking-widest mb-1">Email</span>
+                <a href="mailto:mail@kedr-tomsk.ru" className="text-white/45 hover:text-accent transition-colors text-sm">mail@kedr-tomsk.ru</a>
               </li>
               <li className="flex flex-col">
-                <span className="text-white/25 text-xs uppercase tracking-widest mb-1">Офис</span>
-                <span className="text-white/50 text-sm font-light">г. Томск, ул. Профсоюзная, 2/67 стр.3</span>
+                <span className="text-white/25 text-[10px] uppercase tracking-widest mb-1">Офис</span>
+                <span className="text-white/45 text-sm font-light">г. Томск, ул. Профсоюзная, 2/67 стр.3</span>
               </li>
               <li className="flex flex-col">
-                <span className="text-white/25 text-xs uppercase tracking-widest mb-1">Режим работы</span>
-                <span className="text-white/50 text-sm font-light">Пн–Пт: 9:00–19:00, Сб: 10:00–17:00</span>
+                <span className="text-white/25 text-[10px] uppercase tracking-widest mb-1">Режим работы</span>
+                <span className="text-white/45 text-sm font-light">Пн–Пт: 9:00–19:00, Сб: 10:00–17:00</span>
               </li>
             </ul>
           </div>
         </div>
-        
-        <div className="py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/20 uppercase tracking-widest">
+
+        <div className="py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-white/20 uppercase tracking-widest">
           <p>© {new Date().getFullYear()} Кедр-Томск. Все права защищены.</p>
           <div className="flex gap-8">
             <Link href="/privacy" className="hover:text-white/40 transition-colors">Политика конфиденциальности</Link>

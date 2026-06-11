@@ -1,7 +1,7 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef, ReactNode } from "react";
 
-const easeOutQuart = [0.25, 1, 0.5, 1] as const;
+const snap = [0.22, 1, 0.36, 1] as const;
 
 export function FadeUp({
   children,
@@ -13,14 +13,14 @@ export function FadeUp({
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px 0px" });
+  const inView = useInView(ref, { once: true, margin: "-60px 0px" });
   return (
     <motion.div
       ref={ref}
       className={className}
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 28 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.75, delay, ease: easeOutQuart }}
+      transition={{ duration: 0.6, delay, ease: snap }}
     >
       {children}
     </motion.div>
@@ -37,14 +37,14 @@ export function FadeLeft({
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px 0px" });
+  const inView = useInView(ref, { once: true, margin: "-60px 0px" });
   return (
     <motion.div
       ref={ref}
       className={className}
-      initial={{ opacity: 0, x: -40 }}
+      initial={{ opacity: 0, x: -36 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
-      transition={{ duration: 0.75, delay, ease: easeOutQuart }}
+      transition={{ duration: 0.65, delay, ease: snap }}
     >
       {children}
     </motion.div>
@@ -61,14 +61,14 @@ export function FadeRight({
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px 0px" });
+  const inView = useInView(ref, { once: true, margin: "-60px 0px" });
   return (
     <motion.div
       ref={ref}
       className={className}
-      initial={{ opacity: 0, x: 40 }}
+      initial={{ opacity: 0, x: 36 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
-      transition={{ duration: 0.75, delay, ease: easeOutQuart }}
+      transition={{ duration: 0.65, delay, ease: snap }}
     >
       {children}
     </motion.div>
@@ -78,7 +78,7 @@ export function FadeRight({
 export function StaggerChildren({
   children,
   className = "",
-  stagger = 0.1,
+  stagger = 0.09,
   delay = 0,
 }: {
   children: ReactNode;
@@ -87,7 +87,7 @@ export function StaggerChildren({
   delay?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px 0px" });
+  const inView = useInView(ref, { once: true, margin: "-50px 0px" });
   return (
     <motion.div
       ref={ref}
@@ -105,11 +105,11 @@ export function StaggerChildren({
 }
 
 export const staggerItem = {
-  hidden: { opacity: 0, y: 32 },
+  hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: [0.25, 1, 0.5, 1] },
+    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
@@ -128,9 +128,9 @@ export function ScaleIn({
     <motion.div
       ref={ref}
       className={className}
-      initial={{ opacity: 0, scale: 0.92 }}
+      initial={{ opacity: 0, scale: 0.95 }}
       animate={inView ? { opacity: 1, scale: 1 } : {}}
-      transition={{ duration: 0.65, delay, ease: easeOutQuart }}
+      transition={{ duration: 0.65, delay, ease: snap }}
     >
       {children}
     </motion.div>
@@ -146,7 +146,7 @@ export function LineReveal({ className = "" }: { className?: string }) {
       className={`h-px bg-accent ${className}`}
       initial={{ scaleX: 0, originX: 0 }}
       animate={inView ? { scaleX: 1 } : {}}
-      transition={{ duration: 0.9, ease: easeOutQuart }}
+      transition={{ duration: 0.8, ease: snap }}
     />
   );
 }
@@ -160,7 +160,7 @@ export function ParallaxSection({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
   return (
     <div ref={ref} className={`overflow-hidden ${className}`}>
       <motion.div style={{ y }} className="h-full w-full">
@@ -170,16 +170,26 @@ export function ParallaxSection({
   );
 }
 
-export function CountLine({ className = "" }: { className?: string }) {
+export function SlideReveal({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: ReactNode;
+  delay?: number;
+  className?: string;
+}) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true });
+  const inView = useInView(ref, { once: true, margin: "-40px 0px" });
   return (
-    <motion.div
-      ref={ref}
-      className={`w-8 h-px bg-accent ${className}`}
-      initial={{ scaleX: 0, originX: 0 }}
-      animate={inView ? { scaleX: 1 } : {}}
-      transition={{ duration: 0.6, ease: easeOutQuart }}
-    />
+    <div ref={ref} className={`overflow-hidden ${className}`}>
+      <motion.div
+        initial={{ y: "105%" }}
+        animate={inView ? { y: 0 } : {}}
+        transition={{ duration: 0.7, delay, ease: snap }}
+      >
+        {children}
+      </motion.div>
+    </div>
   );
 }
