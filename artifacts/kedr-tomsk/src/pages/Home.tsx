@@ -174,24 +174,6 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* ══════════════ STATS BAR ══════════════ */}
-      <section className="bg-[#0d1f12] py-14">
-        <div className="container mx-auto px-6 md:px-10">
-          <StaggerChildren className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0" stagger={0.08}>
-            {[
-              { val: <CountUp to={25} suffix="+" duration={1600} />, label: "Лет на рынке" },
-              { val: <CountUp to={500} duration={1800} />, label: "М³ бруса в месяц" },
-              { val: <CountUp to={320} suffix="+" duration={2000} />, label: "Построенных домов" },
-              { val: "вся РФ", label: "География работ" },
-            ].map((s, i) => (
-              <motion.div key={i} variants={staggerItem} className="text-center md:border-r border-white/8 last:border-0 px-4">
-                <div className="text-4xl md:text-5xl font-bold text-accent mb-2 tracking-tight">{s.val}</div>
-                <div className="text-[10px] text-white/35 uppercase tracking-[0.22em]">{s.label}</div>
-              </motion.div>
-            ))}
-          </StaggerChildren>
-        </div>
-      </section>
 
       {/* ══════════════ ADVANTAGES ══════════════ */}
       <section id="advantages" className="py-28 bg-background">
