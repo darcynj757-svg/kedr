@@ -115,7 +115,7 @@ export default function Home() {
               transition={{ delay: 0.25, duration: 0.75, ease }}
               className="text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.0] tracking-tight"
             >
-              Строим деревянные
+              Строим <span className="text-accent">деревянные</span>
             </motion.h1>
           </div>
           <div className="overflow-hidden mb-10">
@@ -479,8 +479,8 @@ export default function Home() {
               <StaggerChildren className="grid grid-cols-2 gap-6 mb-10" stagger={0.08}>
                 {[
                   { val: "25+", label: "лет опыта" },
-                  { val: "150+", label: "домов сдано" },
-                  { val: "200+", label: "проектов" },
+                  { val: "320+", label: "домов сдано" },
+                  { val: "500", label: "м³ бруса/мес" },
                   { val: "вся РФ", label: "география" },
                 ].map((s, i) => (
                   <motion.div key={i} variants={staggerItem} className="border-l-2 border-accent/40 pl-5">
@@ -533,7 +533,7 @@ export default function Home() {
       </section>
 
       {/* ══════════════ STAGES ══════════════ */}
-      <section id="stages" className="py-28 bg-background border-y border-border">
+      <section id="stages" className="py-28 bg-background border-y border-border overflow-hidden">
         <div className="container mx-auto px-6 md:px-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
             <div>
@@ -544,6 +544,21 @@ export default function Home() {
                 </h2>
               </FadeUp>
             </div>
+            <FadeRight>
+              <p className="text-muted-foreground max-w-xs text-sm leading-relaxed font-light">От первого звонка до ключей в руках — всё по договору</p>
+            </FadeRight>
+          </div>
+
+          {/* Progress line */}
+          <div className="relative mb-2 hidden md:block">
+            <div className="absolute top-1/2 left-0 right-0 h-px bg-border -translate-y-1/2" />
+            <motion.div
+              className="absolute top-1/2 left-0 h-px bg-accent -translate-y-1/2"
+              initial={{ width: 0 }}
+              whileInView={{ width: "100%" }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+            />
           </div>
 
           <StaggerChildren className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4" stagger={0.07} delay={0.1}>
@@ -559,15 +574,21 @@ export default function Home() {
               <motion.div
                 key={i}
                 variants={staggerItem}
-                className="group flex flex-col gap-3 cursor-default"
+                className="group flex flex-col gap-3 cursor-default pt-5"
               >
+                <div className="flex items-center gap-2 mb-1">
+                  <motion.div
+                    className="w-2 h-2 rounded-full bg-border group-hover:bg-accent transition-colors duration-400 shrink-0"
+                    whileHover={{ scale: 1.4 }}
+                  />
+                  <span className="text-[10px] text-muted-foreground uppercase tracking-[0.2em]">шаг</span>
+                </div>
                 <motion.div
-                  className="text-4xl font-bold text-border group-hover:text-accent transition-colors duration-400"
+                  className="text-5xl font-bold text-border/60 group-hover:text-accent transition-colors duration-400 leading-none"
                   whileHover={{ scale: 1.05 }}
                 >
                   {step.n}
                 </motion.div>
-                <div className="h-px bg-border group-hover:bg-accent/40 transition-colors duration-400" />
                 <h4 className="font-semibold text-foreground text-sm tracking-tight">{step.title}</h4>
                 <p className="text-xs text-muted-foreground">{step.desc}</p>
               </motion.div>
