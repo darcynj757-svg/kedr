@@ -144,15 +144,40 @@ export default function Home() {
             transition={{ delay: 0.62, duration: 0.6, ease }}
             className="flex flex-wrap gap-4"
           >
-            <Button size="lg" className="btn-accent-gradient text-black font-semibold h-14 px-10 rounded-none tracking-wide text-sm group" asChild>
-              <Link href="/projects">
-                Посмотреть проекты
-                <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline" className="border-white/20 text-white/65 hover:bg-white/8 hover:text-white h-14 px-10 rounded-none tracking-wide text-sm bg-transparent transition-all duration-300" asChild>
-              <Link href="/calculator">Рассчитать стоимость</Link>
-            </Button>
+            {/* Accent button with liquid glass shine */}
+            <Link href="/projects">
+              <motion.div
+                className="relative overflow-hidden h-14 px-10 flex items-center gap-2 cursor-pointer group btn-accent-gradient text-black font-semibold tracking-wide text-sm"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.2 }}
+              >
+                {/* Static glare */}
+                <div className="absolute inset-0 pointer-events-none">
+                  <div className="absolute top-0 left-0 right-0 h-[45%] bg-gradient-to-b from-white/30 to-transparent" />
+                  <div className="absolute top-[10%] left-[15%] w-[30%] h-[25%] bg-white/20 blur-sm rounded-full" />
+                </div>
+                <span className="relative z-10">Посмотреть проекты</span>
+                <ArrowRight size={16} className="relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
+              </motion.div>
+            </Link>
+
+            {/* Glass outline button with liquid glass effect */}
+            <Link href="/calculator">
+              <motion.div
+                className="relative overflow-hidden h-14 px-10 flex items-center cursor-pointer group liquid-glass text-white tracking-wide text-sm font-medium"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.2 }}
+              >
+                {/* Static glare */}
+                <div className="absolute inset-0 pointer-events-none">
+                  <div className="absolute top-0 left-0 right-0 h-[40%] bg-gradient-to-b from-white/20 to-transparent" />
+                  <div className="absolute top-[8%] left-[10%] w-[25%] h-[20%] bg-white/15 blur-sm rounded-full" />
+                </div>
+                <span className="relative z-10">Рассчитать стоимость</span>
+              </motion.div>
+            </Link>
           </motion.div>
         </div>
 
