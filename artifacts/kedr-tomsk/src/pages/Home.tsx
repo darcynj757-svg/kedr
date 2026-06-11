@@ -37,7 +37,7 @@ const advantages = [
   { icon: ShieldCheck, stat: "25+", unit: "лет", label: "Более 25 лет на рынке", desc: "Строим дома с 2001 года", img: "/images/about/about-1.jpg" },
   { icon: Factory, stat: "500", unit: "м³", label: "Собственное производство", desc: "профилированного бруса в месяц", img: "/images/production/prod-1.jpg" },
   { icon: Wrench, stat: "320+", unit: "домов", label: "Полный цикл под ключ", desc: "сдано по всей России", img: "/images/about/about-3.jpg" },
-  { icon: Timer, stat: "0", unit: "₽", label: "Сверх сметы", desc: "Штраф за каждый день просрочки", img: "/images/production/prod-3.jpg" },
+  { icon: Buildings, stat: "40+", unit: "городов", label: "Строим по всей России", desc: "От Томска до Москвы и Краснодара", img: "/images/about/about-6.jpg" },
   { icon: SealCheck, stat: "5", unit: "лет", label: "Гарантия на конструктив", desc: "и 2 года на отделочные работы", img: "/images/gallery/gallery-2.jpg" },
   { icon: Leaf, stat: "100%", unit: "", label: "Экологичные материалы", desc: "Кедр, сосна и лиственница", img: "/images/gallery/gallery-5.jpg" },
 ];
