@@ -222,8 +222,9 @@ export default function Home() {
                 <motion.img
                   src={adv.img}
                   alt={adv.label}
-                  className="absolute inset-0 w-full h-full object-cover"
-                  whileHover={{ scale: 1.06 }}
+                  className="absolute inset-0 w-full h-full object-cover scale-110"
+                  style={{ filter: "blur(5px)" }}
+                  whileHover={{ scale: 1.14 }}
                   transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 />
                 {/* Dark overlay */}
