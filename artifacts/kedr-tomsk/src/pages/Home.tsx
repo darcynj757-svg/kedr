@@ -229,15 +229,13 @@ export default function Home() {
                 {/* Gradient overlay — stronger at bottom */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10 group-hover:from-black/90 group-hover:via-black/45 transition-all duration-500" />
 
-                {/* Icon top-left */}
-                <div className="absolute top-6 left-6">
-                  <motion.div
-                    className="w-11 h-11 flex items-center justify-center border border-white/25 bg-white/10 backdrop-blur-sm text-white group-hover:bg-accent group-hover:border-accent group-hover:text-black transition-all duration-400"
-                    whileHover={{ rotate: 5, scale: 1.08 }}
-                    transition={{ duration: 0.25 }}
-                  >
-                    <adv.icon size={20} weight="duotone" />
-                  </motion.div>
+                {/* Giant blurred icon filling the tile */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+                  <adv.icon
+                    size={280}
+                    weight="duotone"
+                    className="text-white/10 blur-sm group-hover:text-white/15 transition-all duration-500"
+                  />
                 </div>
 
                 {/* Text bottom */}
